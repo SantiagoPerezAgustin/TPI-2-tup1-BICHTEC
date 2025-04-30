@@ -8,9 +8,15 @@ import Footer from "./components/Footer/Footer.jsx";
 function App() {
   return (
     <>
+      <Header />
       <Carousels />
+      <Home />
+      <div className="app-layout">
+        <Footer />
+      </div>
     </>
   );
 }
+
 
 export default App;
