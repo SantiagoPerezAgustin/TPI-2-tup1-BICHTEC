@@ -7,7 +7,12 @@ import "./App.css";
 function App() {
   return (
     <>
+      <Header />
       <Carousels />
+      <Home />
+      <div className="app-layout">
+        <Footer />
+      </div>
     </>
   );
 }
