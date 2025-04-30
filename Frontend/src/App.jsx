@@ -9,11 +9,10 @@ function App() {
     <>
       <Header />
       <Home />
+      <div className="app-layout">
+        <Footer />
+      </div>
     </>
-  );
-    <div className="app-layout">
-      <Footer />
-    </div>
   );
 }
 
