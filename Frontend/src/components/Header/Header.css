@@ -1,0 +1,33 @@
+.main-header {
+    width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #004aad;
+  padding: 1rem 2rem;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.logo-img {
+  height: 70px;
+  width: auto;
+  border-radius: 8px; 
+}
+
+.nav-links a {
+  margin-left: 1rem;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
