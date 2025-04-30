@@ -2,19 +2,26 @@ import React from 'react'
 import './Header.css'
 import { Link } from "react-router-dom";
 import logoImage from './bichtec.jpg'
+import Nav from "react-bootstrap/Nav";
 
 const Header = () => {
   return (
-    <header className="main-header">
-      <div className="logo">
-        <img src={logoImage} alt="Logo" className="logo-img" />
-        </div>
-        <nav className="nav-links">
-        <Link to="/">Inicio</Link>
-        <Link to="/productos">Productos</Link>
-        <Link to="/contacto">Contacto</Link>
-      </nav>
-    </header>
+    <Nav className="justify-content-center" activeKey="/home">
+      <Nav.Item>
+        <Nav.Link href="/home">Active</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-1">Link</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-2">Contacto</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="disabled" disabled>
+          Disabled
+        </Nav.Link>
+      </Nav.Item>
+    </Nav>
   );
 }
 
