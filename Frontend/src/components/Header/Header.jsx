@@ -39,10 +39,9 @@ function ColorSchemesExample() {
                 </a>
               </li>
             </ul>
-            {/* Iniciar Sesión alineado a la derecha */}
             <ul className="navbar-nav mx-3">
               <li className="nav-item">
-                <a className="nav-link text-nowrap" href="#">
+                <a className="nav-link text-nowrap" href="/login">
                   Iniciar Sesión 🔐
                 </a>
               </li>
