@@ -25,7 +25,7 @@ function ColorSchemesExample() {
             <ul className="navbar-nav justify-content-center w-100">
               <li className="nav-item mx-3">
                 <a className="nav-link" href="#">
-                  Home
+                  Inicio
                 </a>
               </li>
               <li className="nav-item mx-3">
