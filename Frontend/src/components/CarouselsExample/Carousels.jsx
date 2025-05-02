@@ -8,7 +8,7 @@ function Carousels(){
     {
       text: "BICHTEC",
       subtitle: "El Mejor lugar para comprar tecnología",
-      buttonText: "Ir a la Página Principal",
+      buttonText: "Conoce Mas Sobre Nosotros",
       image: "https://images.unsplash.com/photo-1593642634367-d91a135587b5",
     },
     {
