@@ -1,0 +1,23 @@
+.nav-link-hover {
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-link-hover::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link-hover:hover::after {
+  width: 100%;
+}
+
+.custom-navbar-bg {
+  background-color: #e1dfdf; /* blanco más oscuro */
+}
