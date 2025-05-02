@@ -1,6 +1,14 @@
 const ValidationsForms = (datos) => {
     const errores = {};
 
+    if (!datos.nombre?.trim()) {
+        errores.nombre = "El nombre es obligatorio";
+    } else if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(datos.nombre)) {
+        errores.nombre = "El nombre solo debe contener letras y espacios";
+    } else if (datos.nombre.length < 2) {
+        errores.nombre = "El nombre debe tener al menos 2 caracteres";
+    }
+
     if (!datos.email?.trim()){
         errores.email = "El email es obligatorio";
     }else if (!/\S+@\S+\.\S+/.test(datos.email)){
