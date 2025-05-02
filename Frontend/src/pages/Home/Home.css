@@ -6,3 +6,13 @@
   text-align: center;
   border: 2px solid black;
 }
+
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
