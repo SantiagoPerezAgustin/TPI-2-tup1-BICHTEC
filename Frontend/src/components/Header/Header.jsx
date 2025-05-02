@@ -1,29 +1,57 @@
-import React from 'react'
-import './Header.css'
-import { Link } from "react-router-dom";
-import logoImage from './bichtec.jpg'
+import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 
-const Header = () => {
+function ColorSchemesExample() {
   return (
-    <Nav className="justify-content-center" activeKey="/home">
-      <Nav.Item>
-        <Nav.Link href="/home">Active</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="link-1">Link</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="link-2">Contacto</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="disabled" disabled>
-          Disabled
-        </Nav.Link>
-      </Nav.Item>
-    </Nav>
+    <>
+      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <div className="container-fluid">
+          <a className="navbar-brand me-3" href="#">
+            BICHTEC 📱
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul className="navbar-nav justify-content-center w-100">
+              <li className="nav-item mx-3">
+                <a className="nav-link" href="#">
+                  Home
+                </a>
+              </li>
+              <li className="nav-item mx-3">
+                <a className="nav-link" href="#">
+                  Productos
+                </a>
+              </li>
+              <li className="nav-item mx-3">
+                <a className="nav-link" href="#">
+                  Sobre nosotros
+                </a>
+              </li>
+            </ul>
+            {/* Iniciar Sesión alineado a la derecha */}
+            <ul className="navbar-nav mx-3">
+              <li className="nav-item">
+                <a className="nav-link text-nowrap" href="#">
+                  Iniciar Sesión 🔐
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </>
   );
 }
 
-
-export default Header;
+export default ColorSchemesExample;

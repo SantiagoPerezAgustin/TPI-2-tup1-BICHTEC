@@ -2,14 +2,13 @@ import React from "react";
 import "./Home.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import Carousels from "../../components/CarouselsExample/Carousels";
 
 const Home = () => {
   return (
     <>
       <Header />
-      <div className="home-container">
-        <h2>Bienvenido a la página principal</h2>
-      </div>
+      <Carousels />
       <Footer />
     </>
   );

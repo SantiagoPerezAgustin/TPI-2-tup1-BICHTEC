@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
-import ExampleCarouselImage from "../../components/CarouselsExample/ExampleCarouselImage";
+import ExampleCarouselImage from "./ExampleCarouselImage.jsx";
 
 function Carousels(){
   const slides = [
