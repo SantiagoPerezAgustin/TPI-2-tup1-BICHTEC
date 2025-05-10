@@ -10,18 +10,21 @@ function Carousels(){
       subtitle: "El Mejor lugar para comprar tecnología",
       buttonText: "Conoce Mas Sobre Nosotros",
       image: "https://images.unsplash.com/photo-1593642634367-d91a135587b5",
+      link: "/sobre-nosotros", // Ruta para este botón
     },
     {
       text: "Venta De Celulares",
       subtitle: "Explorá nuestra colección de smartphones",
       buttonText: "Ver Celulares",
       image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9",
+      link: "/productos", // Ruta para este botón
     },
     {
       text: "Muchas cosas más",
       subtitle: "Tecnología, accesorios y más",
       buttonText: "Más Productos",
       image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+      link: "/productos", // Ruta para este botón
     },
   ];
 
@@ -55,15 +58,15 @@ function Carousels(){
                 >
                   <h3>{slide.text}</h3>
                   <p>{slide.subtitle}</p>
-                  <Link to="/home">
+                  <Link to={slide.link}>  
                     <button
                       style={{
                         marginTop: "1rem",
                         padding: "0.5rem 1rem",
                         fontSize: "1rem",
-                        backgroundColor: "#007bff",
+                        backgroundColor: "#ffc107",
                         border: "none",
-                        color: "white",
+                        color: "black",
                         borderRadius: "5px",
                         cursor: "pointer",
                       }}

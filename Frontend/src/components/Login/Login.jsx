@@ -2,6 +2,7 @@ import React from "react";
 import "./login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = ({ onSubmit, errores, refs }) => {
   const [formData, setFormData] = useState({
@@ -62,7 +63,7 @@ const Login = ({ onSubmit, errores, refs }) => {
             )}
           </div>
           <div className="mt-3">
-            <a href="/register">¿No tienes cuenta? Registrarse</a>
+            <Link to="/register">¿No tienes cuenta? Registrarse</Link>
           </div>
           <button type="submit" className="btn btn-primary">
             Entrar

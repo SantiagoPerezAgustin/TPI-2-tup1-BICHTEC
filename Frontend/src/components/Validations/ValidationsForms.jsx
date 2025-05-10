@@ -21,7 +21,7 @@ const ValidationsForms = (datos) => {
         errores.password = "Mínimo 8 caracteres, incluyendo letras y números";
     }
 
-    if(!datos.password?.trim()) {
+    if(!datos.repeatPassword?.trim()) {
         errores.repeatPassword = "Confirma la contaseña";
     }else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(datos.repeatPassword)) {
         errores.repeatPassword =

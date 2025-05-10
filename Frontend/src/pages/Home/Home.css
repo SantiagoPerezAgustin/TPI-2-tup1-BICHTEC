@@ -1,9 +1,0 @@
-.home-container {
-  font-family: 'Poppins', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 20px); /* Ajustá si el header tiene otra altura */
-  text-align: center;
-  border: 2px solid black;
-}
