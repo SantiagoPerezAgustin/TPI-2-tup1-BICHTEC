@@ -32,7 +32,7 @@ function FormPage() {
 
     return (
       <>
-        <div>
+        <div className="form-page-container">
           <Login
             onSubmit={manejarEnvio}
             errores={errores}

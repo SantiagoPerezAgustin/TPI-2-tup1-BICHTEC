@@ -65,12 +65,12 @@ const Login = ({ onSubmit, errores, refs }) => {
           <div className="mt-3">
             <Link to="/register">¿No tienes cuenta? Registrarse</Link>
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-warning">
             Entrar
           </button>
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-warning"
             onClick={() => navigate("/")}
           >
             Volver

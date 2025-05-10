@@ -92,12 +92,12 @@ const Register = ({ onSubmit, errores, refs }) => {
               <p style={{ color: "red" }}>{errores.repeatPassword}</p>
             )}
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-warning">
             Registrarse
           </button>
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-warning"
             onClick={() => navigate("/login")}
           >
             Volver

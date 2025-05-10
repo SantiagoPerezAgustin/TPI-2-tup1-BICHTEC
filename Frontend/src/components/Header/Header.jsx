@@ -35,7 +35,7 @@ function ColorSchemesExample() {
             <ul className="navbar-nav justify-content-center w-100">
               <li className="nav-item mx-3">
                 <Link
-                  className="nav-link nav-link-hover text-primary fw-bold"
+                  className="nav-link nav-link-hover text-white fw-bold"
                   to="/"
                 >
                   Inicio
@@ -43,7 +43,7 @@ function ColorSchemesExample() {
               </li>
               <li className="nav-item mx-3">
                 <Link
-                  className="nav-link nav-link-hover text-success fw-bold"
+                  className="nav-link nav-link-hover text-white fw-bold"
                   to="/productos"
                 >
                   Productos
@@ -51,7 +51,7 @@ function ColorSchemesExample() {
               </li>
               <li className="nav-item mx-3">
                 <Link
-                  className="nav-link nav-link-hover text-danger fw-bold"
+                  className="nav-link nav-link-hover text-white fw-bold"
                   to="/sobre-nosotros"
                 >
                   Sobre nosotros
