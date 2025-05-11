@@ -10,7 +10,7 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: currentColor;
+  background-color: gold;
   transition: width 0.3s ease-in-out;
 }
 
