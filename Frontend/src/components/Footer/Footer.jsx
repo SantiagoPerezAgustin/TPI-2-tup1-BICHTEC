@@ -8,9 +8,9 @@ const Footer = () => {
         <div className="footer-title">BICHTEC 📱</div>
         <div className="footer-description">Descripcion</div>
         <div className="footer-links">
-          <a href="#">Inicio</a>
-          <a href="#">Productos</a>
-          <a href="#">Contacto</a>
+          <a href="/">Inicio</a>
+          <a href="/productos">Productos</a>
+          <a href="/sobre-nosotros">Contacto</a>
         </div>
         <div className="footer-copy">
           &copy; {new Date().getFullYear()} BICHTEC. Todos los derechos
