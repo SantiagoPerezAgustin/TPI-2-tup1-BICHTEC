@@ -3,7 +3,7 @@
   color: white;
   padding: 20px 30px;
   width: 100%;
-  margin: 0; /* elimina margen lateral */
+  margin: 0;
 }
 
 .footer-container {
@@ -28,11 +28,27 @@
   margin: 0 10px;
   color: #dddddd;
   text-decoration: none;
+  position: relative;
+}
+
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: gold; /* efecto dorado */
+  transition: width 0.3s ease-in-out;
+}
+
+.footer-links a:hover::after {
+  width: 100%;
 }
 
 .footer-links a:hover {
   color: #ffffff;
-  text-decoration: underline;
+  text-decoration: none; /* eliminamos subrayado clásico */
 }
 
 .footer-copy {

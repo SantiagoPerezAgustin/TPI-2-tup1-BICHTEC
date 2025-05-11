@@ -1,15 +1,20 @@
 import React from 'react'
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
+import Carta from '../../components/CartaSobreNosotros/Carta';
+import "./SobreNosotros.css"
 
 const SobreNosotros = () => {
   return (
     <>
       <Header />
-      <h2 style={{ height: "100vh", width: "100vw" }}>SOBRE NOSOTROS</h2>
+      <div className="sobre-nosotros-wrapper">
+        <Carta />
+      </div>
+
       <Footer />
     </>
-  )
+  );
 }
 
 export default SobreNosotros
