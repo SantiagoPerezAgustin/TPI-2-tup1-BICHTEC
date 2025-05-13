@@ -5,6 +5,7 @@ const pedidosRoutes = require('./routes/pedidos.routes.js');
 const pedidosDetallesRoutes = require('./routes/pedidosDetalles.routes.js');
 const usuariosRoutes = require('./routes/usuarios.routes.js');
 const categoriasRoutes = require('./routes/categorias.routes.js');
+const authRoutes = require('./routes/auth.routes.js'); // Importar las rutas de autenticación
 const sequelize = require('./database/conexion.js');
 
 
@@ -13,10 +14,13 @@ require('./model/relations.js'); // Importar las relaciones aquí
 // Middleware para procesar JSON
 app.use(express.json());
 
-// Ruta de prueba
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
+// Middleware para procesar datos de formularios
+app.use((req, res, next) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "*");
+        res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+        next();
+    });
 
 // Rutas
 app.use("/productos", productosRoutes);
@@ -24,6 +28,7 @@ app.use("/pedidos", pedidosRoutes);
 app.use("/pedidosDetalles", pedidosDetallesRoutes);
 app.use("/usuarios", usuariosRoutes);
 app.use("/categorias", categoriasRoutes);
+app.use("/auth", authRoutes); 
 
 sequelize.sync({ force: false })
     .then(() => {
