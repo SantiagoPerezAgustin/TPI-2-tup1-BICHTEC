@@ -6,7 +6,6 @@ import SideBar from "../../components/SideBar/SideBar";
 const Productos = () => {
   return (
     <>
-      <Header />
       <SideBar>
         <div className="container">
           <h1>Productos</h1>
@@ -14,7 +13,6 @@ const Productos = () => {
           <p>Aquí puedes encontrar una variedad de productos disponibles.</p>
         </div>
       </SideBar>
-      <Footer />
     </>
   );
 };
