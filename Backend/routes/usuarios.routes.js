@@ -5,7 +5,9 @@ const usuariosController = new UsuariosController();
 
 router.get("/", usuariosController.consultar);
 
-router.post("/", usuariosController.crear);
+router.post("/login", usuariosController.login);
+
+router.post("/register", usuariosController.register);
 
 router.route("/:id")
   .get(usuariosController.consultarPorId)
