@@ -1,20 +1,20 @@
-import React from 'react'
-import Header from '../../components/Header/Header'
-import Footer from '../../components/Footer/Footer'
-import Carta from '../../components/CartaSobreNosotros/Carta';
-import "./SobreNosotros.css"
+import React from "react";
+import "./SobreNosotros.css";
 
 const SobreNosotros = () => {
   return (
-    <>
-      <Header />
-      <div className="sobre-nosotros-wrapper">
-        <Carta />
+    <div className="sobre-nosotros-container">
+      <div className="sobre-nosotros-card">
+        <h2>Sobre Nosotros</h2>
+        <p>
+          Somos <strong>BICHTEC 📱</strong>, una empresa apasionada por la
+          tecnología móvil. Ofrecemos celulares de las marcas más confiables
+          como iPhone, Samsung y Xiaomi, combinando calidad, asesoramiento y
+          precios competitivos.
+        </p>
       </div>
-
-      <Footer />
-    </>
+    </div>
   );
-}
+};
 
-export default SobreNosotros
+export default SobreNosotros;

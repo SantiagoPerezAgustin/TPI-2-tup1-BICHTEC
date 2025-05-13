@@ -1,8 +1,60 @@
-.sobre-nosotros-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(99.6vh - 140px); /* altura total menos header y footer */
-    padding: 2rem;
-    width: 100%;
-  }
+.sobre-nosotros-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+  min-height: 75vh; 
+  background-color: #ececec;
+}
+
+.sobre-nosotros-card {
+  background-color: #000000; /* Fondo negro elegante */
+  color: #f0f0f0;
+  border: 2px solid gold;
+  border-radius: 12px;
+  padding: 40px 50px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.2); /* brillo sutil */
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sobre-nosotros-card::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sobre-nosotros-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 35px rgba(255, 215, 0, 0.4);
+}
+
+.sobre-nosotros-card h2 {
+  color: gold;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  border-bottom: 1px solid gold;
+  padding-bottom: 10px;
+}
+
+.sobre-nosotros-card p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #dddddd;
+  z-index: 1;
+  position: relative;
+}
+
+
+.sobre-nosotros-card strong {
+  color: gold;
+}

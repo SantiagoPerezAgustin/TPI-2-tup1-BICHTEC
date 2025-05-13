@@ -12,17 +12,22 @@ import SobreNosotros from "./pages/SobreNosotros/SobreNosotros.jsx";
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<FormPage />} />
-        <Route path="/register" element={<FormPageRegister />} />
-        <Route path="/productos" element={<Productos />} />
-        <Route path="/sobre-nosotros" element={<SobreNosotros />} />
-      </Routes>
-    </>
+    <div className="app-layout">
+      <Header />
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<FormPage />} />
+          <Route path="/register" element={<FormPageRegister />} />
+          <Route path="/productos" element={<Productos />} />
+          <Route path="/sobre-nosotros" element={<SobreNosotros />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
   );
 }
+
 
 
 export default App;
