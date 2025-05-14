@@ -12,6 +12,7 @@ body {
   border: 2px solid gold;
   border-radius: 10px;
   box-sizing: border-box;
+  text-align: center;
 }
 
 .carta-personalizada:hover {
@@ -27,4 +28,5 @@ body {
 
 .carta-personalizada .card-text {
   color: #ddd;
+  text-align: center;
 }
