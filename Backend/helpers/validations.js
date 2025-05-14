@@ -1,4 +1,4 @@
-export const validateString = (str, minLength, maxLength) => {
+ const validateString = (str, minLength, maxLength) => {
     if (minLength && str.length < minLength)
         return false;
     else if (maxLength && str.length > maxLength)
@@ -7,12 +7,12 @@ export const validateString = (str, minLength, maxLength) => {
     return true;
 }
 
-export const validateEmail = (email) => {
+ const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
-export const validatePassword = (password, minLength, maxLength, needsUppercase, needsNumber) => {
+ const validatePassword = (password, minLength, maxLength, needsUppercase, needsNumber) => {
     if (minLength && password.length < minLength)
         return false;
 
@@ -27,4 +27,10 @@ export const validatePassword = (password, minLength, maxLength, needsUppercase,
 
 
     return true;
+}
+
+module.exports = {
+    validateString,
+    validateEmail,
+    validatePassword
 }

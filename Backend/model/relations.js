@@ -3,6 +3,7 @@ const Pedido = require('./pedidoModel.js');
 const Producto = require('./productoModel.js');
 const Usuario = require('./usuarioModel.js');
 const Categoria = require('./categoriaModel.js');
+const Marca = require('./marcaModel.js');
 const sequelize = require('../database/conexion.js');
  
 
@@ -23,13 +24,22 @@ PedidoDetalle.belongsTo(Pedido, { foreignKey: 'pedidoId' });
 Categoria.hasMany(Producto, { foreignKey: 'categoriaId' });
 Producto.belongsTo(Categoria, { foreignKey: 'categoriaId' });
 
+// 🏷️ Categoria → tiene muchas Marcas
+Categoria.hasMany(Marca, { foreignKey: 'categoriaId' });
+Marca.belongsTo(Categoria, { foreignKey: 'categoriaId' });
+
+// 🏷️ Marca → tiene muchos Productos
+Marca.hasMany(Producto, { foreignKey: 'marcaId' });
+Producto.belongsTo(Marca, { foreignKey: 'marcaId' });
+
 module.exports = {
     sequelize,
     PedidoDetalle,
     Pedido,
     Producto,
     Usuario,
-    Categoria
+    Categoria,
+    Marca
 };
 
 
