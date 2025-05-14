@@ -5,6 +5,7 @@ const pedidosRoutes = require('./routes/pedidos.routes.js');
 const pedidosDetallesRoutes = require('./routes/pedidosDetalles.routes.js');
 const usuariosRoutes = require('./routes/usuarios.routes.js');
 const categoriasRoutes = require('./routes/categorias.routes.js');
+const marcasRoutes = require('./routes/marcas.routes.js'); 
 const authRoutes = require('./routes/auth.routes.js'); // Importar las rutas de autenticación
 const sequelize = require('./database/conexion.js');
 
@@ -28,9 +29,10 @@ app.use("/pedidos", pedidosRoutes);
 app.use("/pedidosDetalles", pedidosDetallesRoutes);
 app.use("/usuarios", usuariosRoutes);
 app.use("/categorias", categoriasRoutes);
+app.use("/marcas", marcasRoutes);
 app.use("/auth", authRoutes); 
 
-sequelize.sync({ force: false })
+sequelize.sync({ force: true })
     .then(() => {
         console.log('Base de datos sincronizada');
         app.listen(3000, () => {
