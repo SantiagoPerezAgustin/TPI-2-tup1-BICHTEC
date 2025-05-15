@@ -1,8 +1,9 @@
 const {Sequelize} = require('sequelize');
 
-const sequelize = new Sequelize('tanhambur', 'root', '', {
-    host: 'localhost',
-    dialect: 'mysql'
+const sequelize = new Sequelize('sql10779075', 'sql10779075', '8j5mwcABh1', {
+    host: 'sql10.freesqldatabase.com',
+    dialect: 'mysql',
+    port: 3306
 })
 
 //sequelize.sync({force: false})
