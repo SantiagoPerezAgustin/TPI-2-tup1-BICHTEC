@@ -1,9 +1,9 @@
 import React from "react";
 import "./SobreNosotros.css";
-import CartaSobreNosotros from "../../components/CartaSobreNosotros/Carta";
+import CartaSobreNosotros from "../../components/CartaSobreNosotros/CartaSobreNosotros"
 
 const SobreNosotros = () => {
-  return <CartaSobreNosotros></CartaSobreNosotros>;
+  return <CartaSobreNosotros />;
 };
 
 export default SobreNosotros;
