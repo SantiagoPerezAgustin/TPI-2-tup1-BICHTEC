@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const SideBar = ({ children }) => {
   return (
-    <div className="d-flex" style={{ height: "100vh", width: "100vw" }}>
+    <div className="d-flex" style={{ height: "100vh", width: "100%" }}>
       {/* Sidebar */}
       <div
         className="text-black p-3"
