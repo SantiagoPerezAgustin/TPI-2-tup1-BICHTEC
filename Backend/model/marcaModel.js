@@ -13,10 +13,6 @@ const Marca = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    categoriaId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
   },
   {
     tableName: "marcas",

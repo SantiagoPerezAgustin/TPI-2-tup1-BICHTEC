@@ -4,31 +4,43 @@ const Producto = require('./productoModel.js');
 const Usuario = require('./usuarioModel.js');
 const Categoria = require('./categoriaModel.js');
 const Marca = require('./marcaModel.js');
+const CategoriaMarca = require('./categoriaMarcaModel.js');
 const sequelize = require('../database/conexion.js');
  
 
 // Relaciones
-// 🧍 Usuario → tiene muchos Pedidos
+// Usuario → tiene muchos Pedidos
 Usuario.hasMany(Pedido, { foreignKey: 'usuarioId' });
 Pedido.belongsTo(Usuario, { foreignKey: 'usuarioId' });
 
-// 📦 Producto → puede estar en muchos PedidoDetalle
+//  Producto → puede estar en muchos PedidoDetalle
 Producto.hasMany(PedidoDetalle, { foreignKey: 'productoId' });
 PedidoDetalle.belongsTo(Producto, { foreignKey: 'productoId' });
 
-// 🧾 Pedido → tiene muchos Detalles
+//  Pedido → tiene muchos Detalles
 Pedido.hasMany(PedidoDetalle, { foreignKey: 'pedidoId' });
 PedidoDetalle.belongsTo(Pedido, { foreignKey: 'pedidoId' });
 
-// 🏷️ Categoria → tiene muchos Productos
+//  Categoria → tiene muchos Productos
 Categoria.hasMany(Producto, { foreignKey: 'categoriaId' });
 Producto.belongsTo(Categoria, { foreignKey: 'categoriaId' });
 
-// 🏷️ Categoria → tiene muchas Marcas
-Categoria.hasMany(Marca, { foreignKey: 'categoriaId' });
-Marca.belongsTo(Categoria, { foreignKey: 'categoriaId' });
+// Relación muchos a muchos entre Categoria y Marca
+Categoria.belongsToMany(Marca, {
+    through: CategoriaMarca,
+    foreignKey: 'categoriaId',
+    otherKey: 'marcaId',
+    as: 'marcas',
+});
 
-// 🏷️ Marca → tiene muchos Productos
+Marca.belongsToMany(Categoria, {
+    through: CategoriaMarca,
+    foreignKey: 'marcaId',
+    otherKey: 'categoriaId',
+    as: 'categorias',
+});
+
+//  Marca → tiene muchos Productos
 Marca.hasMany(Producto, { foreignKey: 'marcaId' });
 Producto.belongsTo(Marca, { foreignKey: 'marcaId' });
 
@@ -39,7 +51,8 @@ module.exports = {
     Producto,
     Usuario,
     Categoria,
-    Marca
+    Marca,
+    CategoriaMarca,
 };
 
 
