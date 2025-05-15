@@ -58,16 +58,27 @@ function ColorSchemesExample() {
                 </Link>
               </li>
             </ul>
-            <ul className="navbar-nav mx-3">
-              <li className="nav-item">
-                <Link
-                  className="btn btn-outline-warning text-white text-nowrap"
-                  to="/login"
+            <div className="d-flex align-items-center mx-3 gap-3">
+              <Link
+                to="/carrito"
+                className="nav-link text-white position-relative"
+              >
+                <i className="bi bi-cart-fill fs-4"></i>
+                {/* Badge opcional */}
+                <span
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  style={{ fontSize: "0.6rem" }}
                 >
-                  Iniciar Sesión 🔐
-                </Link>
-              </li>
-            </ul>
+                </span>
+              </Link>
+
+              <Link
+                className="btn btn-outline-warning text-white text-nowrap"
+                to="/login"
+              >
+                Iniciar Sesión 🔐
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
