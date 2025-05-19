@@ -19,5 +19,21 @@
 }
 
 .custom-navbar-bg {
-  background-color: #1a1a1a;
+  background-color: #1a1a1a; /* blanco más oscuro */
 }
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Valor mayor que el sidebar */
+}
+/* src/components/Header/Header.css */
+.header-fixed {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+}
+

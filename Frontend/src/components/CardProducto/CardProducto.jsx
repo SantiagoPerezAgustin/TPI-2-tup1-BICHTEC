@@ -1,28 +1,20 @@
-import { Button, Card, Image, Text } from "@chakra-ui/react"
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
-const CardProducto = () => {
+function BasicExample() {
   return (
-    <Card.Root maxW="sm" overflow="hidden">
-      <Image
-        src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-        alt="Green double couch with wooden legs"
-      />
-      <Card.Body gap="2">
-        <Card.Title>Producto</Card.Title>
-        <Card.Description>
-          Aca irá la descripción del producto.
-        </Card.Description>
-        <Text textStyle="2xl" fontWeight="medium" letterSpacing="tight" mt="2">
-          $450
-        </Text>
+    <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Body>
+        <Card.Title>Card Title</Card.Title>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Button variant="primary">Go somewhere</Button>
       </Card.Body>
-      <Card.Footer gap="2">
-        <Button variant="solid">Buy now</Button>
-        <Button variant="ghost">Add to cart</Button>
-      </Card.Footer>
-    </Card.Root>
-  )
+    </Card>
+  );
 }
 
-
-export default CardProducto;
+export default BasicExample;

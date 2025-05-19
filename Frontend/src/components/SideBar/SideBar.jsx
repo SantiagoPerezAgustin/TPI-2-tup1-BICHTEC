@@ -1,22 +1,28 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+const SIDEBAR_WIDTH = 250;
+
 const SideBar = ({ children }) => {
   return (
-    <div className="d-flex" style={{ height: "100vh", width: "100%" }}>
-      {/* Sidebar */}
+    <>
+      {/* Sidebar fijo */}
       <div
-        className="text-black p-3"
+        className="sidebar-fixed "
         style={{
-          width: "250px",
-          height: "100%", // Ajusta la altura al contenedor padre
+          width: SIDEBAR_WIDTH,
+          height: "100vh",
+          position: "fixed",
+          top: 0,
+          left: 0,
           boxShadow: "2px 0 5px rgba(0,0,0,0.2)",
-          backgroundColor: "#1a1a1a", // Cambia el color de fondo aquí
-          color: "black", // Cambia el color del texto para que sea legible
+          backgroundColor: "#1a1a1a",
+          color: "black",
+          zIndex: 100,
+          padding: "24px 0 0 0",
         }}
       >
-        <br />
-        <ul className="nav flex-column">
+        <ul className="nav flex-column p-3 mt-5">
           <li className="nav-item">
             <a className="nav-link text-white" href="#">
               Categorías
@@ -37,11 +43,20 @@ const SideBar = ({ children }) => {
         </ul>
       </div>
 
-      {/* Contenido principal */}
-      <div className="flex-grow-1" style={{ padding: "20px" }}>
+      {/* Contenido principal con margen izquierdo */}
+      <div
+        className="main-with-sidebar"
+        style={{
+          marginLeft: SIDEBAR_WIDTH,
+          minHeight: "100vh",
+          padding: "20px",
+          background: "#ececec",
+          overflowY: "auto",
+        }}
+      >
         {children}
       </div>
-    </div>
+    </>
   );
 };
 
