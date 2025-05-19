@@ -20,3 +20,6 @@ function Contactos() {
 }
 
 export default Contactos;
+=======
+export default Contactos;
+>>>>>>> 2b10ee3 (Multiples cambios al css del proyecto, agregado del componente Contactos, finalizacion de la pagina Sobre Nosotros)

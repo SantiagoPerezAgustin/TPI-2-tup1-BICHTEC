@@ -1,10 +1,12 @@
-html, body, #root {
+html,
+body,
+#root {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   background-color: #ececec; /* gris claro */
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 * {
@@ -18,6 +20,6 @@ html, body, #root {
 
 .main-content {
   flex: 1 0 auto;
-  overflow-y: auto ;
+  overflow-y: auto;
   /* border opcional */
 }
