@@ -1,0 +1,60 @@
+.contactos-container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-bottom: 20px;
+  padding-left: 2px;
+  padding-right: 10px;
+}
+
+.carta-personalizada-contactos {
+  background-color: #383838;
+  color: #f0f0f0;
+  border: 2px solid gold;
+  border-radius: 12px;
+  padding: 40px 50px;
+  max-width: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+/*.carta-personalizada::before {
+  content: "";
+  position: relative;
+  top: -50px;
+  left: -50px;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 215, 0, 0.05) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}*/
+
+.carta-personalizada-contactos:hover {
+  transform: translateY(+2px);
+  background-color: #434343;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+.carta-personalizada-contactos .card-title {
+  color: gold;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  border-bottom: 1px solid gold;
+  padding-bottom: 10px;
+}
+
+.carta-personalizada-contactos .card-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #dddddd;
+  z-index: 1;
+  position: relative;
+}

@@ -1,10 +1,12 @@
-html, body, #root {
+html,
+body,
+#root {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   background-color: #ececec; /* gris claro */
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 * {
@@ -14,9 +16,4 @@ html, body, #root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-
-.main-content {
-  border: 1px solid rgb(6, 0, 0);
 }
