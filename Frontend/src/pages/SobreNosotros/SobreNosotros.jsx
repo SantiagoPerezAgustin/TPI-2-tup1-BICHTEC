@@ -1,23 +1,9 @@
 import React from "react";
 import "./SobreNosotros.css";
-import CartaSobreNosotros from "../../components/CartaSobreNosotros/CartaSobreNosotros";
-import Contactos from "../../components/Contactos/Contactos";
+import CartaSobreNosotros from "../../components/CartaSobreNosotros/CartaSobreNosotros"
 
 const SobreNosotros = () => {
-  return (
-    <div className="sobre-nosotros-page">
-      <div className="contenido-texto">
-        <CartaSobreNosotros />
-        <Contactos />
-      </div>
-      <img
-        src="../../../Bichtec.png"
-        alt="BICHTEC Logo"
-        height="800px"
-        className="imagen-logo"
-      />
-    </div>
-  );
+  return <CartaSobreNosotros />;
 };
 
 export default SobreNosotros;

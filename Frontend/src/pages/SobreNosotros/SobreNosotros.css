@@ -1,15 +1,3 @@
-.sobre-nosotros-page {
-  display: flex;
-  align-items: flex-start; /* Alinea la parte superior */
-  background-color: #1a1a1a;
-}
-
-.imagen-logo {
-  max-width: 600px;
-  height: auto;
-}
-
-/*
 .sobre-nosotros-container {
   display: flex;
   justify-content: center;
@@ -20,14 +8,14 @@
 }
 
 .sobre-nosotros-card {
-  background-color: #000000; 
+  background-color: #000000; /* Fondo negro elegante */
   color: #f0f0f0;
   border: 2px solid gold;
   border-radius: 12px;
   padding: 40px 50px;
   max-width: 800px;
   width: 100%;
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.2); 
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.2); /* brillo sutil */
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -74,4 +62,3 @@
 .sobre-nosotros-card strong {
   color: gold;
 }
-*/
