@@ -2,3 +2,13 @@ body {
   background-color: rgb(255, 255, 255);
   color: white;
 }
+/* Por ejemplo en src/pages/Productos/Productos.css */
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+  gap: 2rem; /* separación entre cards */
+  padding: 2rem;
+  justify-items: center;
+  max-height: calc(100vh - 40px); /* Ajusta según tu header/footer */
+  overflow-y: auto;
+}

@@ -7,7 +7,7 @@ import "./Header.css";
 function ColorSchemesExample() {
   return (
     <>
-      <nav className="navbar navbar-expand-lg custom-navbar-bg">
+      <nav className="navbar header-fixed navbar-expand-lg custom-navbar-bg">
         <div className="container-fluid">
           <Link className="navbar-brand text-white me-3" to="/">
             BICHTEC
