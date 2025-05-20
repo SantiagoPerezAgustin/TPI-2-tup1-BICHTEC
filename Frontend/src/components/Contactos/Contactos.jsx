@@ -1,4 +1,7 @@
 import Card from "react-bootstrap/Card";
+import { BsInstagram } from "react-icons/bs";
+import { BsWhatsapp } from "react-icons/bs";
+import { BsFacebook } from "react-icons/bs";
 import "./Contactos.css";
 
 function Contactos() {
@@ -8,10 +11,33 @@ function Contactos() {
         <Card.Body>
           <Card.Title>Contactanos</Card.Title>
           <Card.Text>
-            Somos <strong>BICHTEC 📱</strong>, una empresa apasionada por la
-            tecnología móvil. Ofrecemos celulares de las marcas más confiables
-            como iPhone, Samsung y Xiaomi, combinando calidad, asesoramiento y
-            precios competitivos.
+            <a
+              href="https://www.instagram.com/bichtec/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="enlaces"
+            >
+              <BsInstagram style={{ marginRight: "4px" }} />
+              Instagram
+            </a>
+            <a
+              href="https://wa.link/rjxqc3"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="enlaces"
+            >
+              <BsWhatsapp style={{ marginRight: "4px" }} />
+              Whatsapp
+            </a>
+            <a
+              href="https://web.facebook.com/profile.php?id=61574244380407"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="enlaces"
+            >
+              <BsFacebook style={{ marginRight: "4px" }} />
+              Facebook
+            </a>
           </Card.Text>
         </Card.Body>
       </Card>
@@ -20,4 +46,3 @@ function Contactos() {
 }
 
 export default Contactos;
-

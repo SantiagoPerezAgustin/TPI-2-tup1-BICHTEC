@@ -6,7 +6,9 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-title">BICHTEC 📱</div>
-        <div className="footer-description">Descripcion</div>
+        <div className="footer-description">
+          Combinanción de calidad, asesoramiento y precios competitivos.
+        </div>
         <div className="footer-links">
           <a href="/">Inicio</a>
           <a href="/productos">Productos</a>

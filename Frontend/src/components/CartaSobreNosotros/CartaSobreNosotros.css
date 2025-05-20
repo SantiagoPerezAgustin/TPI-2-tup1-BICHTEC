@@ -2,8 +2,8 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  padding: 11vh 2px;
-  padding-right: 10px;
+  padding: 11vh 10px;
+  padding-right: 14px;
 }
 
 .carta-personalizada {
