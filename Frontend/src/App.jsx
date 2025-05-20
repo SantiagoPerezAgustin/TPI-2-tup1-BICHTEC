@@ -10,6 +10,7 @@ import FormPageRegister from "./pages/FormPage/FormPageRegister.jsx";
 import Productos from "./pages/Productos/Productos.jsx";
 import SobreNosotros from "./pages/SobreNosotros/SobreNosotros.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
+import SideBar from "./components/SideBar/SideBar.jsx";
 
 function App() {
   return (
@@ -20,7 +21,14 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<FormPage />} />
           <Route path="/register" element={<FormPageRegister />} />
-          <Route path="/productos" element={<Productos />} />
+          <Route
+            path="/productos"
+            element={
+              <SideBar>
+                <Productos />
+              </SideBar>
+            }
+          />
           <Route path="/sobre-nosotros" element={<SobreNosotros />} />
           <Route path="/carrito" element={<Cart />} />
         </Routes>
@@ -29,7 +37,5 @@ function App() {
     </div>
   );
 }
-
-
 
 export default App;
