@@ -9,6 +9,7 @@ import Register from "./components/Register/Register.jsx";
 import FormPageRegister from "./pages/FormPage/FormPageRegister.jsx";
 import Productos from "./pages/Productos/Productos.jsx";
 import SobreNosotros from "./pages/SobreNosotros/SobreNosotros.jsx";
+import Cart from "./pages/Cart/Cart.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/register" element={<FormPageRegister />} />
           <Route path="/productos" element={<Productos />} />
           <Route path="/sobre-nosotros" element={<SobreNosotros />} />
+          <Route path="/carrito" element={<Cart />} />
         </Routes>
       </main>
       <Footer />
