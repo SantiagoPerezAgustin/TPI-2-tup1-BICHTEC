@@ -142,7 +142,7 @@ const SideBar = ({ children }) => {
                 </li>
               ) : marcas.length === 0 ? (
                 <li>
-                  <span className="dropdown-item">Sin marcas</span>
+                  <span className="dropdown-item text-black">Sin marcas</span>
                 </li>
               ) : (
                 marcas.map((marca) => (
@@ -161,12 +161,6 @@ const SideBar = ({ children }) => {
                 ))
               )}
             </ul>
-          </li>
-
-          <li className="nav-item">
-            <a className="nav-link text-white" href="#">
-              Servicios
-            </a>
           </li>
         </ul>
       </div>

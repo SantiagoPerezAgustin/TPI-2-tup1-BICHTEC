@@ -32,7 +32,7 @@ const Productos = () => {
   return (
     <div className="productos-grid">
       {productosFiltrados.length === 0 ? (
-        <p>No hay productos para mostrar.</p>
+        <p className="text-black">No hay productos para mostrar.</p>
       ) : (
         productosFiltrados.map((producto) => (
           <CardProducto key={producto.id} producto={producto} />
