@@ -2,9 +2,9 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  padding-bottom: 20px;
-  padding-left: 2px;
-  padding-right: 10px;
+  padding-bottom: 11vh;
+  padding-left: 10px;
+  padding-right: 14px;
 }
 
 .carta-personalizada-contactos {
@@ -57,4 +57,18 @@
   color: #dddddd;
   z-index: 1;
   position: relative;
+}
+
+.enlaces {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: gold;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.enlaces:hover {
+  text-decoration: underline;
+  color: rgb(255, 241, 164);
 }

@@ -13,7 +13,6 @@ const SobreNosotros = () => {
       <img
         src="../../../Bichtec.png"
         alt="BICHTEC Logo"
-        height="800px"
         className="imagen-logo"
       />
     </div>

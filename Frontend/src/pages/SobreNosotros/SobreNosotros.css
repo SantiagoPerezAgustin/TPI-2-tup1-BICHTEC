@@ -1,77 +1,31 @@
 .sobre-nosotros-page {
   display: flex;
-  align-items: flex-start; /* Alinea la parte superior */
+  align-items: flex-start;
   background-color: #1a1a1a;
+  flex-direction: row; /* Horizontal por defecto */
 }
 
 .imagen-logo {
-  max-width: 85.5vh;
+  max-width: 92vh;
   height: auto;
+  order: 2; /* por defecto aparece después */
 }
 
-/*
-.sobre-nosotros-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 50px 20px;
-  min-height: 75vh;
-  background-color: #ececec;
-}
+/* --- Responsive: cuando el ancho de pantalla sea menor a 768px --- */
+@media (max-width: 768px) {
+  .sobre-nosotros-page {
+    flex-direction: column; /* Cambia a vertical */
+    align-items: center;
+  }
 
-.sobre-nosotros-card {
-  background-color: #000000; 
-  color: #f0f0f0;
-  border: 2px solid gold;
-  border-radius: 12px;
-  padding: 40px 50px;
-  max-width: 800px;
-  width: 100%;
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.2); 
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
-}
+  .imagen-logo {
+    order: 0; /* aparece primero */
+    max-width: 100%; /* se ajusta al ancho del celular */
+    margin-bottom: 16px;
+  }
 
-.sobre-nosotros-card::before {
-  content: "";
-  position: absolute;
-  top: -50px;
-  left: -50px;
-  width: 150%;
-  height: 150%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 215, 0, 0.05) 0%,
-    transparent 70%
-  );
-  pointer-events: none;
-  z-index: 0;
+  .contenido-texto {
+    width: 100%;
+    padding: 0 16px;
+  }
 }
-
-.sobre-nosotros-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 35px rgba(255, 215, 0, 0.4);
-}
-
-.sobre-nosotros-card h2 {
-  color: gold;
-  margin-bottom: 20px;
-  font-size: 2rem;
-  border-bottom: 1px solid gold;
-  padding-bottom: 10px;
-}
-
-.sobre-nosotros-card p {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: #dddddd;
-  z-index: 1;
-  position: relative;
-}
-
-.sobre-nosotros-card strong {
-  color: gold;
-}
-*/
