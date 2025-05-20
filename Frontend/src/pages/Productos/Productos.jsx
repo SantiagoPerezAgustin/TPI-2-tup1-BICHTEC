@@ -8,7 +8,7 @@ import { useFiltro } from "../../context/FiltroContext";
 
 const Productos = () => {
   const [productos, setProductos] = useState([]);
-  const { categoriaSeleccionada, marcaSeleccionada } = useFiltro();
+  const { categoriaSeleccionada, marcaSeleccionada, busqueda, precioMin, precioMax } = useFiltro();
 
   useEffect(() => {
     fetch("http://localhost:3000/productos")
@@ -26,7 +26,16 @@ const Productos = () => {
     const coincideMarca = marcaSeleccionada
       ? producto.marcaId === marcaSeleccionada
       : true;
-    return coincideCategoria && coincideMarca;
+     const coincideBusqueda = busqueda
+      ? producto.nombre.toLowerCase().includes(busqueda.toLowerCase())
+      : true; 
+      const coincidePrecioMin = precioMin !== ""
+      ? producto.precio >= Number(precioMin)
+      : true;
+    const coincidePrecioMax = precioMax !== ""
+      ? producto.precio <= Number(precioMax)
+      : true;
+    return coincideCategoria && coincideMarca && coincideBusqueda && coincidePrecioMin && coincidePrecioMax;
   });
 
   return (

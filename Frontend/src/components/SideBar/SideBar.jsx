@@ -9,6 +9,9 @@ const SideBar = ({ children }) => {
   const [marcas, setMarcas] = useState([]);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
   const [marcaSeleccionada, setMarcaSeleccionada] = useState(null);
+  const [busqueda, setBusqueda] = useState("");
+  const [precioMin, setPrecioMin] = useState("");
+  const [precioMax, setPrecioMax] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/categorias")
@@ -52,7 +55,7 @@ const SideBar = ({ children }) => {
 
   return (
     <FiltroContext.Provider
-      value={{ categoriaSeleccionada, marcaSeleccionada }}
+      value={{ categoriaSeleccionada, marcaSeleccionada, busqueda, precioMin, precioMax }}
     >
       <div
         className="sidebar-fixed"
@@ -70,6 +73,19 @@ const SideBar = ({ children }) => {
         }}
       >
         <ul className="nav flex-column p-3 mt-5">
+          <li className="mb-3">
+            <label className="form-label text-white mb-1">Buscar: </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Buscar producto..."
+              value={busqueda}
+              onChange={(e) => setBusqueda(e.target.value)}
+            />
+          </li>
+          <br />
+          <hr />
+          <br />
           {(categoriaSeleccionadaObj || marcaSeleccionadaObj) && (
             <li className="mb-3">
               {categoriaSeleccionadaObj && (
@@ -161,6 +177,28 @@ const SideBar = ({ children }) => {
                 ))
               )}
             </ul>
+          </li>
+          <br />
+          <hr />
+
+          <li className="mb-3">
+            <label className="form-label text-white mb-1">Precio: </label>
+            <input
+              type="number"
+              className="form-control mb-1"
+              placeholder="Mínimo"
+              value={precioMin}
+              min={0}
+              onChange={(e) => setPrecioMin(e.target.value)}
+            />
+            <input
+              type="number"
+              className="form-control"
+              placeholder="Máximo"
+              value={precioMax}
+              min={0}
+              onChange={(e) => setPrecioMax(e.target.value)}
+            />
           </li>
         </ul>
       </div>
