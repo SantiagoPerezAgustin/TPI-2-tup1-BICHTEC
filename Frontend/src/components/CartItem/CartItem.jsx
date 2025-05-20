@@ -1,4 +1,12 @@
-const CartItem = ({ item, onEliminar }) => {
+const CartItem = ({ item, onEliminar, onModificarCantidad }) => {
+  const aumentar = () => onModificarCantidad(item.id, item.cantidad + 1);
+  const disminuir = () => {
+    if (item.cantidad > 1) {
+      onModificarCantidad(item.id, item.cantidad - 1);
+    }
+  };
+
+
   return (
     <div
       className="card text-light mb-3 shadow-sm"
@@ -12,7 +20,21 @@ const CartItem = ({ item, onEliminar }) => {
           <h5 className="card-title mb-1" style={{ color: "#d4af37" }}>
             {item.nombre}
           </h5>
+
           <p className="card-text mb-1">Cantidad: {item.cantidad}</p>
+          {/* Controles de cantidad */}
+          <div className="d-flex align-items-center mb-2">
+            <button
+              className="btn btn-sm btn-outline-light me-2"
+              onClick={disminuir}
+            >
+              -
+            </button>
+            <span className="me-2">{item.cantidad}</span>
+            <button className="btn btn-sm btn-outline-light" onClick={aumentar}>
+              +
+            </button>
+          </div>
           <button
             className="btn btn-sm btn-outline-danger"
             onClick={() => onEliminar(item.id)}

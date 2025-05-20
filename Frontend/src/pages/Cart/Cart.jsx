@@ -9,6 +9,13 @@ const Cart = () => {
     { id: 2, nombre: "Producto 2", cantidad: 1, precio: 2500 },
   ]);
 
+  const modificarCantidad = (id, nuevaCantidad) => {
+    const nuevosItems = cartItems.map((item) => 
+      item.id === id ? {...item, cantidad: nuevaCantidad } : item 
+    );
+    setCartItems(nuevosItems);
+  };
+
   const eliminarItem = (id) => {
     const nuevosItems = cartItems.filter((item) => item.id !== id);
     setCartItems(nuevosItems);
@@ -43,7 +50,7 @@ const Cart = () => {
           <div className="row">
             <div className="col-md-8">
               {cartItems.map((item) => (
-                <CartItem key={item.id} item={item} onEliminar={eliminarItem} />
+                <CartItem key={item.id} item={item} onEliminar={eliminarItem} onModificarCantidad={modificarCantidad} />
               ))}
             </div>
             <div className="col-md-4">
