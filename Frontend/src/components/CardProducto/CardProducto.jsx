@@ -11,7 +11,15 @@ function CardProducto({ producto }) {
     return num;
   }
   return (
-    <Card style={{ width: "18rem", minHeight: "220px", maxHeight: "360px" }}>
+    <Card
+      style={{
+        width: "22rem",
+        minHeight: "220px",
+        maxHeight: "360px",
+        border: "2px solid #FFD700", // borde dorado
+        backgroundColor: "#fdf6e3", // fondo suave
+      }}
+    >
       <Card.Img
         variant="top"
         src={producto.imagenUrl}
@@ -39,6 +47,8 @@ function CardProducto({ producto }) {
               fontWeight: "bold",
               fontSize: "1.3rem",
               marginBottom: "0.25rem",
+              color: "#000", // negro
+              textShadow: "1px 1px 0 #FFD700", // sombra dorada
             }}
           >
             {producto.nombre}
@@ -46,12 +56,13 @@ function CardProducto({ producto }) {
           <div className="text-center" style={{ marginBottom: "0.5rem" }}>
             <span
               style={{
-                color: "#198754",
+                color: "#000", // negro
                 fontWeight: "bold",
                 fontSize: "1.2rem",
-                background: "#e9fbe7",
+                background: "linear-gradient(45deg, #FFD700, #FFEA00)", // dorado
                 borderRadius: "8px",
                 padding: "0.25rem 0.75rem",
+                boxShadow: "0 0 6px rgba(0,0,0,0.2)",
               }}
             >
               $
@@ -63,7 +74,16 @@ function CardProducto({ producto }) {
           </div>
         </div>
         <div className="d-flex justify-content-center gap-2 mt-3 mb-2">
-          <Button variant="success">Comprar +</Button>
+          <Button
+            style={{
+              backgroundColor: "#FFD700", // dorado
+              color: "#000", // negro
+              border: "1px solid #000",
+              fontWeight: "bold",
+            }}
+          >
+            Comprar +
+          </Button>
           <Button variant="dark">Ver detalle</Button>
         </div>
       </Card.Body>
