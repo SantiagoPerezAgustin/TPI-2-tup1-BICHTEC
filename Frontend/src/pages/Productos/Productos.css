@@ -1,6 +1,6 @@
 body {
-  background-color: rgb(255, 255, 255);
-  color: white;
+  background-color: #ffffff;
+  color: #000000; /* negro */
 }
 /* Por ejemplo en src/pages/Productos/Productos.css */
 .productos-grid {
