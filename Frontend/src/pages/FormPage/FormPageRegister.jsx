@@ -14,7 +14,7 @@ const FormPageRegister = () => {
   const navigate = useNavigate();
 
   const manejarEnvio = async (FormData) => {
-    const errores = ValidationsForms(FormData);
+    const errores = ValidationsForms(FormData, "register");
 
     if (Object.keys(errores).length > 0) {
       if (errores.email && emailRef.current) {
@@ -50,7 +50,7 @@ const FormPageRegister = () => {
           toast.error(error.message);
         }
       } catch (err) {
-        alert("Error en el registro");
+        toast.error("Error en el registro");
       }
     }
   };
