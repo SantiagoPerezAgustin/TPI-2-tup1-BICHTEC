@@ -22,7 +22,7 @@ function Carousels() {
       text: "Muchas cosas más",
       subtitle: "Tecnología, accesorios y más",
       buttonText: "Más Productos",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
       link: "/productos", // Ruta para este botón
     },
   ];
