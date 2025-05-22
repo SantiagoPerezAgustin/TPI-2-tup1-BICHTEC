@@ -55,12 +55,11 @@ const Productos = () => {
             <p className="text-black">No hay productos para mostrar.</p>
           ) : (
             productosFiltrados.map((producto) => (
-              <div
-                key={producto.id}
-                style={{ cursor: "pointer" }}
-              >
-                <CardProducto producto={producto}
-                onVerDetalles={() => setProductoSeleccionado(producto)} />
+              <div key={producto.id} style={{ cursor: "pointer" }}>
+                <CardProducto
+                  producto={producto}
+                  onVerDetalles={() => setProductoSeleccionado(producto)}
+                />
               </div>
             ))
           )}
