@@ -17,7 +17,7 @@ function CardProducto({ producto, onVerDetalles }) {
 
   const navigate = useNavigate();
 
-  const { usuario } = useContext(AuthContext);
+  const { usuario, rol } = useContext(AuthContext);
 
   const handleBtnComprarClick = (e) => {
     if (!usuario) {
@@ -92,21 +92,48 @@ function CardProducto({ producto, onVerDetalles }) {
           </div>
         </div>
         <div className="d-flex justify-content-center gap-2 mt-3 mb-2">
-          <Button
-            type="button"
-            onClick={handleBtnComprarClick}
-            style={{
-              backgroundColor: "#FFD700",
-              color: "#000",
-              border: "1px solid #000",
-              fontWeight: "bold",
-            }}
-          >
-            Comprar +
-          </Button>
-          <Button type="button" variant="dark" onClick={onVerDetalles}>
-            Ver detalle
-          </Button>
+          {rol === "admin" && (
+            <Button
+              type="button"
+              style={{
+                backgroundColor: "#40A9FF",
+                color: "#000",
+                border: "1px solid #000",
+                fontWeight: "bold",
+              }}
+            >
+              Modificar
+            </Button>
+          )}
+          {rol === "admin" && (
+            <Button type="button" style={{
+                backgroundColor: "#FF4D4F ",
+                color: "#000",
+                border: "1px solid #000",
+                fontWeight: "bold",
+              }}>
+              Eliminar
+            </Button>
+          )}
+          {rol !== "admin" && (
+            <Button
+              type="button"
+              onClick={handleBtnComprarClick}
+              style={{
+                backgroundColor: "#FFD700",
+                color: "#000",
+                border: "1px solid #000",
+                fontWeight: "bold",
+              }}
+            >
+              Comprar +
+            </Button>
+          )}
+          {rol !== "admin" && (
+            <Button type="button" variant="dark" onClick={onVerDetalles}>
+              Ver detalle
+            </Button>
+          )}
         </div>
       </Card.Body>
     </Card>
