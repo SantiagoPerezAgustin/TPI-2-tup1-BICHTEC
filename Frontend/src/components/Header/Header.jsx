@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function ColorSchemesExample() {
-  const { usuario, logout } = useContext(AuthContext);
+  const { usuario, logout, rol } = useContext(AuthContext);
 
   console.log("Pruebaa", usuario);
 
@@ -29,6 +29,7 @@ function ColorSchemesExample() {
     }
   };
 
+  console.log("ROL EN HEADER:", rol);
   return (
     <>
       <nav className="navbar header-fixed navbar-expand-lg custom-navbar-bg">
@@ -81,6 +82,16 @@ function ColorSchemesExample() {
                   Sobre nosotros
                 </Link>
               </li>
+              {rol === "admin" && (
+                <li className="nav-item mx-3 text-nowrap">
+                  <Link
+                    className="nav-link nav-link-hover text-white fw-bold"
+                    to="/admin"
+                  >
+                    Panel de Administración
+                  </Link>
+                </li>
+              )}
             </ul>
             <div className="d-flex align-items-center mx-3 gap-3">
               {usuario && (
