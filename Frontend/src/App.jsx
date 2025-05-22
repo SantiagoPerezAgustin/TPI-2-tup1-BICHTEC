@@ -12,6 +12,8 @@ import SobreNosotros from "./pages/SobreNosotros/SobreNosotros.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
 import SideBar from "./components/SideBar/SideBar.jsx";
 import { ToastContainer } from "react-toastify";
+import ProtectedRoute from "./context/ProtectedRoute.jsx";
+import Perfil from "./pages/Perfil/Perfil.jsx";
 
 function App() {
   return (
@@ -31,7 +33,22 @@ function App() {
             }
           />
           <Route path="/sobre-nosotros" element={<SobreNosotros />} />
-          <Route path="/carrito" element={<Cart />} />
+          <Route
+            path="/carrito"
+            element={
+              <ProtectedRoute>
+                <Cart />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/perfil"
+            element={
+              <ProtectedRoute>
+                <Perfil />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </main>
       <Footer />

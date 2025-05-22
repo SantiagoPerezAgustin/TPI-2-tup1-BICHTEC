@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 function ColorSchemesExample() {
   const { usuario, logout } = useContext(AuthContext);
 
-  console.log("Holaaaa", usuario);
+  console.log("Pruebaa", usuario);
 
   const navigate = useNavigate();
 

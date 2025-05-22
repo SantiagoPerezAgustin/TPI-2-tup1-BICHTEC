@@ -12,6 +12,8 @@ const SideBar = ({ children }) => {
   const [busqueda, setBusqueda] = useState("");
   const [precioMin, setPrecioMin] = useState("");
   const [precioMax, setPrecioMax] = useState("");
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [showOffcanvas, setShowOffcanvas] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:3000/categorias")
@@ -37,6 +39,12 @@ const SideBar = ({ children }) => {
     }
   }, [categoriaSeleccionada]);
 
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const handleCategoriaClick = (cat) => {
     setCategoriaSeleccionada(cat.id || cat._id);
   };
@@ -52,7 +60,8 @@ const SideBar = ({ children }) => {
     (marca) => (marca.id || marca._id) === marcaSeleccionada
   );
 
-  const SidebarContent = () => (
+  // SidebarContent solo se renderiza una vez y se muestra en el lugar correcto
+  const SidebarContent = (
     <ul className="nav flex-column p-3">
       <li className="mb-3">
         <label className="form-label text-white mb-1">Buscar:</label>
@@ -181,10 +190,15 @@ const SideBar = ({ children }) => {
     <FiltroContext.Provider
       value={{
         categoriaSeleccionada,
+        setCategoriaSeleccionada,
         marcaSeleccionada,
+        setMarcaSeleccionada,
         busqueda,
+        setBusqueda,
         precioMin,
+        setPrecioMin,
         precioMax,
+        setPrecioMax,
       }}
     >
       {/* Botón para móviles */}
@@ -201,23 +215,25 @@ const SideBar = ({ children }) => {
       </div>
 
       {/* Sidebar fijo para escritorio */}
-      <div
-        className="d-none d-md-block"
-        style={{
-          width: SIDEBAR_WIDTH,
-          height: "100vh",
-          position: "fixed",
-          top: 0,
-          left: 0,
-          boxShadow: "2px 0 5px rgba(0,0,0,0.2)",
-          backgroundColor: "#1a1a1a",
-          paddingTop: "4%",
-          color: "white",
-          zIndex: 100,
-        }}
-      >
-        <SidebarContent />
-      </div>
+      {windowWidth >= 768 && (
+        <div
+          className="d-none d-md-block"
+          style={{
+            width: SIDEBAR_WIDTH,
+            height: "100vh",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            boxShadow: "2px 0 5px rgba(0,0,0,0.2)",
+            backgroundColor: "#1a1a1a",
+            paddingTop: "4%",
+            color: "white",
+            zIndex: 100,
+          }}
+        >
+          {SidebarContent}
+        </div>
+      )}
 
       {/* Sidebar offcanvas para móviles */}
       <div
@@ -225,17 +241,17 @@ const SideBar = ({ children }) => {
         tabIndex="-1"
         id="offcanvasSidebar"
         aria-labelledby="offcanvasSidebarLabel"
-        style={{ width: "75vw", backgroundColor: "#1a1a1a" }} // <- Color del fondo
+        style={{ width: "75vw", backgroundColor: "#1a1a1a" }}
       >
         <div
           className="offcanvas-header text-white"
-          style={{ backgroundColor: "#1a1a1a" }} // <- Color del header
+          style={{ backgroundColor: "#1a1a1a" }}
         ></div>
         <div
           className="offcanvas-body text-white"
-          style={{ backgroundColor: "#1a1a1a" }} // <- Color del cuerpo
+          style={{ backgroundColor: "#1a1a1a" }}
         >
-          <SidebarContent />
+          {SidebarContent}
         </div>
       </div>
 
@@ -243,7 +259,7 @@ const SideBar = ({ children }) => {
       <div
         className="main-with-sidebar"
         style={{
-          marginLeft: window.innerWidth >= 768 ? SIDEBAR_WIDTH : 0,
+          marginLeft: windowWidth >= 768 ? SIDEBAR_WIDTH : 0,
           padding: "20px",
           background: "#ececec",
           minHeight: "100vh",
