@@ -13,6 +13,7 @@ import Cart from "./pages/Cart/Cart.jsx";
 import SideBar from "./components/SideBar/SideBar.jsx";
 import { ToastContainer } from "react-toastify";
 
+
 function App() {
   return (
     <div className="app-layout">

@@ -1,10 +1,32 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "./Header.css";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function ColorSchemesExample() {
+  const { usuario, logout } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+    toast.success("Sesión cerrada con éxito");
+  };
+
+  const handleCarritoClick = (e) => {
+  if (!usuario) {
+    e.preventDefault();
+    toast.error("Debes iniciar sesión para comprar.");
+    navigate("/login");
+  }
+};
+
   return (
     <>
       <nav className="navbar header-fixed navbar-expand-lg custom-navbar-bg">
@@ -61,6 +83,7 @@ function ColorSchemesExample() {
             <div className="d-flex align-items-center mx-3 gap-3">
               <Link
                 to="/carrito"
+                onClick={handleCarritoClick}         
                 className="nav-link text-white position-relative"
               >
                 <i className="bi bi-cart-fill fs-4"></i>
@@ -68,16 +91,20 @@ function ColorSchemesExample() {
                 <span
                   className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                   style={{ fontSize: "0.6rem" }}
+                ></span>
+              </Link>
+              {usuario ? (
+                <button onClick={handleLogout} className="btn btn-warning">
+                  Cerrar Sesión 🔒
+                </button>
+              ) : (
+                <Link
+                  className="btn btn-outline-warning text-white text-nowrap"
+                  to="/login"
                 >
-                </span>
-              </Link>
-
-              <Link
-                className="btn btn-outline-warning text-white text-nowrap"
-                to="/login"
-              >
-                Iniciar Sesión 🔐
-              </Link>
+                  Iniciar Sesión 🔐
+                </Link>
+              )}
             </div>
           </div>
         </div>

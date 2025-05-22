@@ -57,10 +57,10 @@ const Productos = () => {
             productosFiltrados.map((producto) => (
               <div
                 key={producto.id}
-                onClick={() => setProductoSeleccionado(producto)}
                 style={{ cursor: "pointer" }}
               >
-                <CardProducto producto={producto} />
+                <CardProducto producto={producto}
+                onVerDetalles={() => setProductoSeleccionado(producto)} />
               </div>
             ))
           )}

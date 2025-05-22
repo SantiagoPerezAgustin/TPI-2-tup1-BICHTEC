@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-function CardProducto({ producto }) {
+function CardProducto({ producto, onVerDetalles }) {
   function normalizarPrecio(precio) {
     const num = Number(precio);
     // Si el precio es menor a 1000, probablemente está mal (con o sin decimales)
@@ -10,6 +14,18 @@ function CardProducto({ producto }) {
     }
     return num;
   }
+
+  const navigate = useNavigate();
+
+  const { usuario } = useContext(AuthContext);
+
+  const handleBtnComprarClick = (e) => {
+    if (!usuario) {
+      e.preventDefault();
+      toast.error("Debes iniciar sesión para comprar.");
+      navigate("/login");
+    }
+  };
   return (
     <Card
       style={{
@@ -74,7 +90,7 @@ function CardProducto({ producto }) {
           </div>
         </div>
         <div className="d-flex justify-content-center gap-2 mt-3 mb-2">
-          <Button
+          <Button type="button" onClick={handleBtnComprarClick}
             style={{
               backgroundColor: "#FFD700", // dorado
               color: "#000", // negro
@@ -84,7 +100,7 @@ function CardProducto({ producto }) {
           >
             Comprar +
           </Button>
-          <Button variant="dark">Ver detalle</Button>
+          <Button type="button" variant="dark" onClick={onVerDetalles}>Ver detalle</Button>
         </div>
       </Card.Body>
     </Card>

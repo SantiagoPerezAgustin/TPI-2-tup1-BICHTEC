@@ -37,6 +37,8 @@ function FormPage() {
 
         if (response.ok) {
           const data = await response.json();
+          localStorage.setItem("token", data.token); // Guarda el token en localStorage
+          localStorage.setItem("usuario", JSON.stringify(data.user)); // Guarda el usuario en localStorage
           toast.success("¡Inicio de sesión exitoso!");
           // Guarda token o usuario si tu backend lo devuelve
           navigate("/");
