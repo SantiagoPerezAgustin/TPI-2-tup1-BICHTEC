@@ -5,12 +5,12 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(null);
 
-  useEffect(() => {
-    const usuarioGuardado = localStorage.getItem("usuario");
-    if (usuarioGuardado) {
-      setUsuario(JSON.parse(usuarioGuardado));
-    }
-  }, []);
+ useEffect(() => {
+  const usuarioGuardado = localStorage.getItem("usuario");
+  if (usuarioGuardado && usuarioGuardado !== "undefined") {
+    setUsuario(JSON.parse(usuarioGuardado));
+  }
+}, []);
 
   const login = (usuario, token) => {
     setUsuario(usuario);
