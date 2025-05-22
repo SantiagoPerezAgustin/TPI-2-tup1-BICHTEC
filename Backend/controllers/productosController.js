@@ -3,7 +3,7 @@ const Producto = require("../model/productoModel.js");
 class ProductosController {
   constructor() {}
 
-  async consultar(req, res) {
+  async consultar (req, res) {
     try {
       const productos = await Producto.findAll();
       res.json({

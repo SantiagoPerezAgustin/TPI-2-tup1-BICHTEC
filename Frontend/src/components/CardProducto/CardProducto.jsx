@@ -13,7 +13,7 @@ function CardProducto({ producto }) {
   return (
     <Card
       style={{
-        width: "22rem",
+        width: "16rem",
         minHeight: "220px",
         maxHeight: "360px",
         border: "2px solid #FFD700", // borde dorado

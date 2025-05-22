@@ -1,4 +1,4 @@
-const Usuario = require("../model/usuarioModel.js"); // Importar el modelo de usuario
+const Usuario = require("../model/usuarioModel.js");
 const jwt = require("jsonwebtoken"); // Importar la librería de JWT
 const bcrypt = require("bcrypt"); // Importar la librería de bcrypt
 const {
@@ -42,10 +42,10 @@ const registerUser = async (req, res) => {
   if (result.error) return res.status(400).send({ message: result.message });
 
   // Extrae name, email y password del body de la request
-  const { name, email, password } = req.body;
+  const { nombre, email, password } = req.body;
 
   // Busca si ya existe un usuario con ese email
-  const user = await User.findOne({
+  const user = await Usuario.findOne({
     where: { email },
   });
 
@@ -65,8 +65,8 @@ const registerUser = async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, salt);
 
   // Crea el nuevo usuario en la base de datos
-  const newUser = await User.create({
-    name,
+  const newUser = await Usuario.create({
+    nombre,
     email,
     password: hashedPassword, // Guarda el hash, no la contraseña en texto plano
   });
@@ -85,7 +85,7 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   // Busca el usuario por email
-  const user = await User.findOne({
+  const user = await Usuario.findOne({
     where: { email },
   });
 
@@ -137,9 +137,9 @@ const validateRegisterUser = (req) => {
     message: "",
   };
 
-  const { name, email, password } = req;
+  const { nombre, email, password } = req;
 
-  if (!name || !validateString(name, null, 13))
+  if (!nombre || !validateString(nombre, null, 13))
     return {
       error: true,
       message: "Nombre de usuario inválido",

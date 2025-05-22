@@ -11,6 +11,7 @@ import Productos from "./pages/Productos/Productos.jsx";
 import SobreNosotros from "./pages/SobreNosotros/SobreNosotros.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
 import SideBar from "./components/SideBar/SideBar.jsx";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <ToastContainer />
     </div>
   );
 }
