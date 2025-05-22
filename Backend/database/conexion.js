@@ -1,11 +1,20 @@
 const {Sequelize} = require('sequelize');
 
-const sequelize = new Sequelize('sql10779075', 'sql10779075', '8j5mwcABh1', {
-    host: 'sql10.freesqldatabase.com',
-    dialect: 'mysql',
+const sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: './database.sqlite',
+    logging: false,
     port: 3306
 })
 
+
+sequelize.authenticate().then(() => {
+    return sequelize.query('PRAGMA foreign_keys = ON;');
+}).then(() => {
+    console.log('Foreign keys activadas en SQLite');
+}).catch((error) => {
+    console.error('Error al activar foreign keys:', error);
+});
 //sequelize.sync({force: false})
     //.then(() => {
       //  console.log('Base de datos sincronizada correctamente');
