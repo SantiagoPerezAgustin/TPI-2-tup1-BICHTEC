@@ -11,6 +11,8 @@ import { toast } from "react-toastify";
 function ColorSchemesExample() {
   const { usuario, logout } = useContext(AuthContext);
 
+  console.log("Holaaaa", usuario);
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -20,12 +22,12 @@ function ColorSchemesExample() {
   };
 
   const handleCarritoClick = (e) => {
-  if (!usuario) {
-    e.preventDefault();
-    toast.error("Debes iniciar sesión para comprar.");
-    navigate("/login");
-  }
-};
+    if (!usuario) {
+      e.preventDefault();
+      toast.error("Debes iniciar sesión para comprar.");
+      navigate("/login");
+    }
+  };
 
   return (
     <>
@@ -81,9 +83,36 @@ function ColorSchemesExample() {
               </li>
             </ul>
             <div className="d-flex align-items-center mx-3 gap-3">
+              {usuario && (
+                <Link
+                  to="/perfil"
+                  className="usuario-header px-3 py-1 me-3 text-decoration-none"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #FFD700 60%, #fffbe6 100%)",
+                    color: "#222",
+                    borderRadius: "20px",
+                    fontWeight: "bold",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                    border: "1px solid #FFD700",
+                    letterSpacing: "0.5px",
+                    fontSize: "1rem",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    transition: "box-shadow 0.2s",
+                  }}
+                >
+                  <i
+                    className="bi bi-person-circle"
+                    style={{ fontSize: "1.2rem" }}
+                  ></i>
+                  {usuario.nombre}
+                </Link>
+              )}
               <Link
                 to="/carrito"
-                onClick={handleCarritoClick}         
+                onClick={handleCarritoClick}
                 className="nav-link text-white position-relative"
               >
                 <i className="bi bi-cart-fill fs-4"></i>
@@ -94,8 +123,11 @@ function ColorSchemesExample() {
                 ></span>
               </Link>
               {usuario ? (
-                <button onClick={handleLogout} className="btn btn-warning">
-                  Cerrar Sesión 🔒
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-secondary text-nowrap"
+                >
+                  Cerrar Sesión ❌​
                 </button>
               ) : (
                 <Link

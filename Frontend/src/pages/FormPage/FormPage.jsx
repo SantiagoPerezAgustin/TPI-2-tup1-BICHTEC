@@ -3,6 +3,8 @@ import ValidationsForms from "../../components/Validations/ValidationsForms";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 function FormPage() {
   const emailRef = useRef(null);
@@ -10,6 +12,8 @@ function FormPage() {
   const repeatPasswordRef = useRef(null);
   const [errores, setErrores] = useState({});
   const navigate = useNavigate();
+
+  const { login } = useContext(AuthContext);
 
   const manejarEnvio = async (FormData) => {
     const errores = ValidationsForms(FormData, "login");
@@ -37,11 +41,16 @@ function FormPage() {
 
         if (response.ok) {
           const data = await response.json();
-          localStorage.setItem("token", data.token); // Guarda el token en localStorage
-          localStorage.setItem("usuario", JSON.stringify(data.user)); // Guarda el usuario en localStorage
-          toast.success("¡Inicio de sesión exitoso!");
-          // Guarda token o usuario si tu backend lo devuelve
-          navigate("/");
+          if (data.user) {
+            localStorage.setItem("token", data.token); // Guarda el token en localStorage
+            localStorage.setItem("usuario", JSON.stringify(data.user)); // Guarda el usuario en localStorage
+            login(data.user, data.token); // Llama a la función de login del contexto
+            toast.success("¡Inicio de sesión exitoso!");
+            // Guarda token o usuario si tu backend lo devuelve
+            navigate("/");
+          } else {
+            toast.error("No se recibió el usuario desde el backend.");
+          }
         } else {
           const error = await response.json();
           toast.error(error.message || "Error en el inicio de sesión");

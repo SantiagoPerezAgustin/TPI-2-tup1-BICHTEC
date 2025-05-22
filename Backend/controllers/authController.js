@@ -106,7 +106,7 @@ const loginUser = async (req, res) => {
   const token = jwt.sign({ email }, secretKey, { expiresIn: "1h" });
 
   // Devuelve el token al cliente
-  return res.json(token, user);
+  return res.json({ token: token, user: user });
 };
 
 const validateLoginUser = (req) => {
