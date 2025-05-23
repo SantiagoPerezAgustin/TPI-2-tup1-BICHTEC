@@ -34,7 +34,24 @@ function ColorSchemesExample() {
     <>
       <nav className="navbar header-fixed navbar-expand-lg custom-navbar-bg">
         <div className="container-fluid">
-          <Link className="navbar-brand text-white me-3" to="/">
+          <Link
+            className="navbar-brand text-white me-3"
+            to="/"
+            style={{
+              fontWeight: "bold",
+              fontSize: "1.4rem",
+              letterSpacing: "0.18em",
+              background: "linear-gradient(90deg, #FFD700 40%, #40A9FF 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              textShadow: "2px 2px 8px rgba(0,0,0,0.18), 0 2px 0 #fffbe6",
+              padding: "0.2em 0.6em",
+              borderRadius: "12px",
+              textTransform: "uppercase",
+              boxShadow: "0 2px 12px rgba(255,215,0,0.12)",
+              transition: "transform 0.2s",
+            }}
+          >
             BICHTEC
           </Link>
           <Link className="navbar-brand me-3" to="/">
@@ -148,18 +165,21 @@ function ColorSchemesExample() {
                   {usuario.nombre}
                 </Link>
               )}
-              <Link
-                to="/carrito"
-                onClick={handleCarritoClick}
-                className="nav-link text-white position-relative"
-              >
-                <i className="bi bi-cart-fill fs-4"></i>
-                {/* Badge opcional */}
-                <span
-                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                  style={{ fontSize: "0.6rem" }}
-                ></span>
-              </Link>
+              {((usuario && rol === "user") || rol === null) && (
+                <Link
+                  to="/carrito"
+                  onClick={handleCarritoClick}
+                  className="nav-link position-relative"
+                  style={{ color: "yellow" }}
+                >
+                  <i className="bi bi-cart-fill fs-4"></i>
+                  {/* Badge opcional */}
+                  <span
+                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    style={{ fontSize: "0.6rem" }}
+                  ></span>
+                </Link>
+              )}
               {usuario ? (
                 <button
                   onClick={handleLogout}
