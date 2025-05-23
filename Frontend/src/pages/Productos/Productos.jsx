@@ -49,21 +49,19 @@ const Productos = () => {
 
   return (
     <>
-      <div className="main-layout">
-        <div className="productos-grid">
-          {productosFiltrados.length === 0 ? (
-            <p className="text-black">No hay productos para mostrar.</p>
-          ) : (
-            productosFiltrados.map((producto) => (
-              <div
-                key={producto.id}
-                style={{ cursor: "pointer" }}
-              >
-                <CardProducto producto={producto}
-                onVerDetalles={() => setProductoSeleccionado(producto)} />
-              </div>
-            ))
-          )}
+      <div className="container py-4">
+        <div className="row">
+          {productosFiltrados.map((producto) => (
+            <div
+              className="col-12 col-sm-6 col-md-4 d-flex justify-content-center mb-4"
+              key={producto.id}
+            >
+              <CardProducto
+                producto={producto}
+                onVerDetalles={() => setProductoSeleccionado(producto)}
+              />
+            </div>
+          ))}
         </div>
       </div>
 
