@@ -4,9 +4,11 @@ import DetalleProducto from "../../components/DetalleProducto/DetalleProducto";
 import "./Productos.css";
 import { useFiltro } from "../../context/FiltroContext";
 
+
 const Productos = () => {
   const [productos, setProductos] = useState([]);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+
   const {
     categoriaSeleccionada,
     marcaSeleccionada,

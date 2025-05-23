@@ -1,5 +1,9 @@
-import React from "react";
-import "./DetalleProducto.css"; // Asegurate de tener este archivo
+import React, { useContext } from "react";
+import "./DetalleProducto.css";
+import Button from "react-bootstrap/Button";
+import { AuthContext } from "../../context/AuthContext";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const DetalleProducto = ({
   producto,
@@ -7,6 +11,20 @@ const DetalleProducto = ({
   categoriaSeleccionada,
   onClose,
 }) => {
+  const { usuario } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleBtnComprarClick = (e) => {
+    if (!usuario) {
+      e.preventDefault();
+      toast.error("Debes iniciar sesión para comprar.");
+      navigate("/login");
+    } else {
+      // Acá podés manejar la lógica de compra si el usuario está logueado
+      toast.success("Producto agregado al carrito!");
+    }
+  };
+
   if (!producto) return null;
 
   return (
@@ -25,7 +43,26 @@ const DetalleProducto = ({
           <p className="detalle-descripcion">
             <strong>Descripción:</strong> {producto.descripcion}
           </p>
-          <h2>Precio: ${producto.precio}</h2>
+          <div className="precio-comprar-container">
+            <h2 className="precio">Precio: ${producto.precio}</h2>
+            <Button
+              type="button"
+              onClick={handleBtnComprarClick}
+              style={{
+                marginBottom: "10px",
+                backgroundColor: "#FFD700",
+                color: "#000",
+                border: "1px solid #000",
+                fontWeight: "bold",
+                height: "fit-content",
+                fontSize: "1.5rem",
+                padding: "1rem 6rem",
+                borderRadius: "10px",
+              }}
+            >
+              Comprar +
+            </Button>
+          </div>
         </div>
       </div>
     </div>

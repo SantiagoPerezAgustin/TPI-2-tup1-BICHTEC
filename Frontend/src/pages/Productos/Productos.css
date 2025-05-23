@@ -1,14 +1,30 @@
-body {
-  background-color: #ffffff;
-  color: #000000; /* negro */
+@media (max-width: 767.98px) {
+  .main-layout {
+    margin-left: 0; /* sin margen en móviles */
+  }
 }
-/* Por ejemplo en src/pages/Productos/Productos.css */
+
 .productos-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
-  gap: 2rem; /* separación entre cards */
+  grid-template-columns: repeat(3, 1fr); /* Escritorio: 3 columnas */
+  gap: 2rem;
   padding: 2rem;
   justify-items: center;
-  max-height: calc(100vh - 40px); /* Ajusta según tu header/footer */
+  max-height: calc(100vh - 40px);
   overflow-y: auto;
+}
+
+/* Tablets: 2 columnas */
+@media (max-width: 991.98px) {
+  .productos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Móviles: 1 columna */
+@media (max-width: 575.98px) {
+  .productos-grid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
 }

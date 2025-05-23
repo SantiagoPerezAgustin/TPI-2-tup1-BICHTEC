@@ -121,7 +121,7 @@ const validateLoginUser = (req) => {
       error: true,
       message: "Mail inválido",
     };
-  else if (!password || !validatePassword(password, 7, null, true, true)) {
+  else if (!password || !validatePassword(password, 7, null, false, true)) {
     return {
       error: true,
       message: "Contraseña inválida",
@@ -150,7 +150,7 @@ const validateRegisterUser = (req) => {
       error: true,
       message: "Mail inválido",
     };
-  else if (!password || !validatePassword(password, 7, null, true, true)) {
+  else if (!password || !validatePassword(password, 7, null, false, true)) {
     return {
       error: true,
       message: "Contraseña inválida",

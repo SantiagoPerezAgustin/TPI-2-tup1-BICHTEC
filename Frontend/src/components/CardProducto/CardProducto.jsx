@@ -17,7 +17,7 @@ function CardProducto({ producto, onVerDetalles }) {
 
   const navigate = useNavigate();
 
-  const { usuario } = useContext(AuthContext);
+  const { usuario, rol } = useContext(AuthContext);
 
   const handleBtnComprarClick = (e) => {
     if (!usuario) {
@@ -29,18 +29,20 @@ function CardProducto({ producto, onVerDetalles }) {
   return (
     <Card
       style={{
-        width: "16rem",
-        minHeight: "220px",
-        maxHeight: "360px",
-        border: "2px solid #FFD700", // borde dorado
-        backgroundColor: "#fdf6e3", // fondo suave
+        minWidth: "9rem",
+        maxWidth: "19rem",
+        minHeight: "22rem",
+        maxHeight: "30rem",
+        border: "3px solid #FFD700",
+        backgroundColor: "#fdf6e3",
       }}
     >
       <Card.Img
         variant="top"
         src={producto.imagenUrl}
         style={{
-          height: "180px",
+          minHeight: "11rem",
+          maxHeight: "18rem",
           objectFit: "contain",
           backgroundColor: "#fff",
           marginBottom: "0.5rem",
@@ -63,8 +65,8 @@ function CardProducto({ producto, onVerDetalles }) {
               fontWeight: "bold",
               fontSize: "1.3rem",
               marginBottom: "0.25rem",
-              color: "#000", // negro
-              textShadow: "1px 1px 0 #FFD700", // sombra dorada
+              color: "#000",
+              textShadow: "1px 1px 0 #FFD700",
             }}
           >
             {producto.nombre}
@@ -72,10 +74,10 @@ function CardProducto({ producto, onVerDetalles }) {
           <div className="text-center" style={{ marginBottom: "0.5rem" }}>
             <span
               style={{
-                color: "#000", // negro
+                color: "#000",
                 fontWeight: "bold",
                 fontSize: "1.2rem",
-                background: "linear-gradient(45deg, #FFD700, #FFEA00)", // dorado
+                background: "linear-gradient(45deg, #FFD700, #FFEA00)",
                 borderRadius: "8px",
                 padding: "0.25rem 0.75rem",
                 boxShadow: "0 0 6px rgba(0,0,0,0.2)",
@@ -90,17 +92,48 @@ function CardProducto({ producto, onVerDetalles }) {
           </div>
         </div>
         <div className="d-flex justify-content-center gap-2 mt-3 mb-2">
-          <Button type="button" onClick={handleBtnComprarClick}
-            style={{
-              backgroundColor: "#FFD700", // dorado
-              color: "#000", // negro
-              border: "1px solid #000",
-              fontWeight: "bold",
-            }}
-          >
-            Comprar +
-          </Button>
-          <Button type="button" variant="dark" onClick={onVerDetalles}>Ver detalle</Button>
+          {rol === "admin" && (
+            <Button
+              type="button"
+              style={{
+                backgroundColor: "#40A9FF",
+                color: "#000",
+                border: "1px solid #000",
+                fontWeight: "bold",
+              }}
+            >
+              Modificar
+            </Button>
+          )}
+          {rol === "admin" && (
+            <Button type="button" style={{
+                backgroundColor: "#FF4D4F ",
+                color: "#000",
+                border: "1px solid #000",
+                fontWeight: "bold",
+              }}>
+              Eliminar
+            </Button>
+          )}
+          {rol !== "admin" && (
+            <Button
+              type="button"
+              onClick={handleBtnComprarClick}
+              style={{
+                backgroundColor: "#FFD700",
+                color: "#000",
+                border: "1px solid #000",
+                fontWeight: "bold",
+              }}
+            >
+              Comprar +
+            </Button>
+          )}
+          {rol !== "admin" && (
+            <Button type="button" variant="dark" onClick={onVerDetalles}>
+              Ver detalle
+            </Button>
+          )}
         </div>
       </Card.Body>
     </Card>

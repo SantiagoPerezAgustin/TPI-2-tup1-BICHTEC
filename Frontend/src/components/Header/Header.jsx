@@ -9,9 +9,9 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function ColorSchemesExample() {
-  const { usuario, logout } = useContext(AuthContext);
+  const { usuario, logout, rol } = useContext(AuthContext);
 
-  console.log("Holaaaa", usuario);
+  console.log("Pruebaa", usuario);
 
   const navigate = useNavigate();
 
@@ -29,11 +29,29 @@ function ColorSchemesExample() {
     }
   };
 
+  console.log("ROL EN HEADER:", rol);
   return (
     <>
       <nav className="navbar header-fixed navbar-expand-lg custom-navbar-bg">
         <div className="container-fluid">
-          <Link className="navbar-brand text-white me-3" to="/">
+          <Link
+            className="navbar-brand text-white me-3"
+            to="/"
+            style={{
+              fontWeight: "bold",
+              fontSize: "1.4rem",
+              letterSpacing: "0.18em",
+              background: "linear-gradient(90deg, #FFD700 40%, #40A9FF 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              textShadow: "2px 2px 8px rgba(0,0,0,0.18), 0 2px 0 #fffbe6",
+              padding: "0.2em 0.6em",
+              borderRadius: "12px",
+              textTransform: "uppercase",
+              boxShadow: "0 2px 12px rgba(255,215,0,0.12)",
+              transition: "transform 0.2s",
+            }}
+          >
             BICHTEC
           </Link>
           <Link className="navbar-brand me-3" to="/">
@@ -81,9 +99,19 @@ function ColorSchemesExample() {
                   Sobre nosotros
                 </Link>
               </li>
+              {rol === "admin" && (
+                <li className="nav-item mx-3 text-nowrap">
+                  <Link
+                    className="nav-link nav-link-hover text-white fw-bold"
+                    to="/admin"
+                  >
+                    Panel de Administración
+                  </Link>
+                </li>
+              )}
             </ul>
             <div className="d-flex align-items-center mx-3 gap-3">
-              {usuario && (
+              {usuario && rol === "user" && (
                 <Link
                   to="/perfil"
                   className="usuario-header px-3 py-1 me-3 text-decoration-none"
@@ -110,18 +138,48 @@ function ColorSchemesExample() {
                   {usuario.nombre}
                 </Link>
               )}
-              <Link
-                to="/carrito"
-                onClick={handleCarritoClick}
-                className="nav-link text-white position-relative"
-              >
-                <i className="bi bi-cart-fill fs-4"></i>
-                {/* Badge opcional */}
-                <span
-                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                  style={{ fontSize: "0.6rem" }}
-                ></span>
-              </Link>
+              {usuario && rol === "admin" && (
+                <Link
+                  to="/perfil"
+                  className="usuario-header px-3 py-1 me-3 text-decoration-none"
+                  style={{
+                    background:
+                      "linear-gradient(90deg,rgb(27, 134, 216) 60%, #fffbe6 100%)",
+                    color: "#222",
+                    borderRadius: "20px",
+                    fontWeight: "bold",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                    border: "1px solidrgb(255, 255, 255)",
+                    letterSpacing: "0.5px",
+                    fontSize: "1rem",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    transition: "box-shadow 0.2s",
+                  }}
+                >
+                  <i
+                    className="bi bi-person-circle"
+                    style={{ fontSize: "1.2rem" }}
+                  ></i>
+                  {usuario.nombre}
+                </Link>
+              )}
+              {((usuario && rol === "user") || rol === null) && (
+                <Link
+                  to="/carrito"
+                  onClick={handleCarritoClick}
+                  className="nav-link position-relative"
+                  style={{ color: "yellow" }}
+                >
+                  <i className="bi bi-cart-fill fs-4"></i>
+                  {/* Badge opcional */}
+                  <span
+                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    style={{ fontSize: "0.6rem" }}
+                  ></span>
+                </Link>
+              )}
               {usuario ? (
                 <button
                   onClick={handleLogout}
