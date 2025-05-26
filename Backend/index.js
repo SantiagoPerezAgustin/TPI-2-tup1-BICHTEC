@@ -8,6 +8,7 @@ const categoriasRoutes = require('./routes/categorias.routes.js');
 const marcasRoutes = require('./routes/marcas.routes.js'); 
 const authRoutes = require('./routes/auth.routes.js');
 const CategoriaMarcaRoutes = require('./routes/categoriaMarca.routes.js'); 
+const carritoRoutes = require('./routes/carrito.routes.js'); // Importar las rutas del carrito
 const sequelize = require('./database/conexion.js');
 
 
@@ -33,6 +34,7 @@ app.use("/categorias", categoriasRoutes);
 app.use("/marcas", marcasRoutes);
 app.use("/auth", authRoutes);
 app.use("/categoriaMarca", CategoriaMarcaRoutes);
+app.use("/carrito", carritoRoutes); 
 
 sequelize.sync({ force: false })
     .then(() => {

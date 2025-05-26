@@ -1,24 +1,18 @@
-import { useState } from "react";
+import { useContext } from "react";
 import CartItem from "../../components/CartItem/CartItem";
 import CartSummary from "../../components/CartSummary/CartSummary";
 import EmptyCart from "../../components/EmptyCart/EmptyCart";
+import { CarritoContext } from "../../context/CarritoContext";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, nombre: "Producto 1", cantidad: 2, precio: 1500 },
-    { id: 2, nombre: "Producto 2", cantidad: 1, precio: 2500 },
-  ]);
+  const { carrito, actualizarCantidad, quitarDelCarrito } = useContext(CarritoContext);
 
   const modificarCantidad = (id, nuevaCantidad) => {
-    const nuevosItems = cartItems.map((item) => 
-      item.id === id ? {...item, cantidad: nuevaCantidad } : item 
-    );
-    setCartItems(nuevosItems);
+    actualizarCantidad(id, nuevaCantidad);
   };
 
   const eliminarItem = (id) => {
-    const nuevosItems = cartItems.filter((item) => item.id !== id);
-    setCartItems(nuevosItems);
+    quitarDelCarrito(id);
   };
 
   return (
@@ -44,17 +38,22 @@ const Cart = () => {
           <div style={{ width: "142.5px" }}></div>
         </div>
 
-        {cartItems.length === 0 ? (
+        {carrito.length === 0 ? (
           <EmptyCart />
         ) : (
           <div className="row">
             <div className="col-md-8">
-              {cartItems.map((item) => (
-                <CartItem key={item.id} item={item} onEliminar={eliminarItem} onModificarCantidad={modificarCantidad} />
+              {carrito.map((item) => (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  onEliminar={eliminarItem}
+                  onModificarCantidad={modificarCantidad}
+                />
               ))}
             </div>
             <div className="col-md-4">
-              <CartSummary items={cartItems} />
+              <CartSummary items={carrito} />
             </div>
           </div>
         )}

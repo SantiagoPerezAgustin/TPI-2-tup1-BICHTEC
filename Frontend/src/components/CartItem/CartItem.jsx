@@ -1,11 +1,10 @@
 const CartItem = ({ item, onEliminar, onModificarCantidad }) => {
-  const aumentar = () => onModificarCantidad(item.id, item.cantidad + 1);
+  const aumentar = () => onModificarCantidad(item.productoId, item.cantidad + 1);
   const disminuir = () => {
     if (item.cantidad > 1) {
-      onModificarCantidad(item.id, item.cantidad - 1);
+      onModificarCantidad(item.productoId, item.cantidad - 1);
     }
   };
-
 
   return (
     <div
@@ -18,7 +17,7 @@ const CartItem = ({ item, onEliminar, onModificarCantidad }) => {
       <div className="card-body d-flex justify-content-between align-items-center">
         <div>
           <h5 className="card-title mb-1" style={{ color: "#d4af37" }}>
-            {item.nombre}
+            {item.Producto?.nombre || "Producto"}
           </h5>
 
           <p className="card-text mb-1">Cantidad: {item.cantidad}</p>
@@ -37,7 +36,7 @@ const CartItem = ({ item, onEliminar, onModificarCantidad }) => {
           </div>
           <button
             className="btn btn-sm btn-outline-danger"
-            onClick={() => onEliminar(item.id)}
+            onClick={() => onEliminar(item.productoId)}
           >
             Eliminar
           </button>

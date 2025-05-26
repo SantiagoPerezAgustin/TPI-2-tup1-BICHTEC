@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { CarritoContext } from "../../context/CarritoContext";
 
 function CardProducto({ producto, onVerDetalles }) {
   function normalizarPrecio(precio) {
@@ -19,11 +20,22 @@ function CardProducto({ producto, onVerDetalles }) {
 
   const { usuario, rol } = useContext(AuthContext);
 
-  const handleBtnComprarClick = (e) => {
+  const { agregarAlCarrito } = useContext(CarritoContext);
+
+  const handleBtnComprarClick = async (e) => {
     if (!usuario) {
       e.preventDefault();
       toast.error("Debes iniciar sesión para comprar.");
       navigate("/login");
+    } else {
+      try {
+        await agregarAlCarrito(producto.id, 1);
+        toast.success("Producto agregado al carrito");
+      } catch (error) {
+        toast.error(
+          "Error al agregar el producto al carrito: " + error.message
+        );
+      }
     }
   };
   return (
@@ -106,12 +118,15 @@ function CardProducto({ producto, onVerDetalles }) {
             </Button>
           )}
           {rol === "admin" && (
-            <Button type="button" style={{
+            <Button
+              type="button"
+              style={{
                 backgroundColor: "#FF4D4F ",
                 color: "#000",
                 border: "1px solid #000",
                 fontWeight: "bold",
-              }}>
+              }}
+            >
               Eliminar
             </Button>
           )}
