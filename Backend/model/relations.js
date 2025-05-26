@@ -10,7 +10,7 @@ const sequelize = require('../database/conexion.js');
 
 // Relaciones
 // Usuario → tiene muchos Pedidos
-Usuario.hasMany(Pedido, { foreignKey: 'usuarioId' });
+Usuario.hasMany(Pedido, { foreignKey: 'usuarioId', onDelete: 'CASCADE' });
 Pedido.belongsTo(Usuario, { foreignKey: 'usuarioId' });
 
 //  Producto → puede estar en muchos PedidoDetalle
@@ -18,7 +18,7 @@ Producto.hasMany(PedidoDetalle, { foreignKey: 'productoId' });
 PedidoDetalle.belongsTo(Producto, { foreignKey: 'productoId' });
 
 //  Pedido → tiene muchos Detalles
-Pedido.hasMany(PedidoDetalle, { foreignKey: 'pedidoId' });
+Pedido.hasMany(PedidoDetalle, { foreignKey: 'pedidoId', onDelete: 'CASCADE' });
 PedidoDetalle.belongsTo(Pedido, { foreignKey: 'pedidoId' });
 
 //  Categoria → tiene muchos Productos

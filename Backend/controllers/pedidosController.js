@@ -1,4 +1,5 @@
 const Pedido = require("../model/pedidoModel.js"); 
+const PedidoDetalle = require("../model/pedidoDetalleModel.js");
 
 class PedidosController {
   constructor() {}
@@ -19,26 +20,40 @@ class PedidosController {
     }
   }
 
-  // Método para crear un nuevo pedido
+  // Método para crear un nuevo pedido con varios productos
   async crear(req, res) {
     try {
-      const { usuarioId, productoId, cantidad } = req.body;
+      const { usuarioId, direccionEnvio, productos } = req.body;
+      // productos: [{ productoId, cantidad, precio }]
+      if (!usuarioId || !direccionEnvio || !Array.isArray(productos) || productos.length === 0) {
+        return res.status(400).json({ message: "Faltan datos requeridos" });
+      }
 
-      if (!usuarioId || !productoId || !cantidad || cantidad <= 0) {
-        return res.status(400).json({
-          message: "Faltan datos requeridos",
+      // Calcula el total
+      const total = productos.reduce((acc, prod) => acc + prod.precio * prod.cantidad, 0);
+
+      // Crea el pedido
+      const nuevoPedido = await Pedido.create({
+        usuarioId,
+        fechaPedido: new Date(),
+        total,
+        estado: "pendiente",
+        direccionEnvio,
+      });
+
+      // Crea los detalles del pedido
+      for (const prod of productos) {
+        await PedidoDetalle.create({
+          pedidoId: nuevoPedido.id,
+          productoId: prod.productoId,
+          cantidad: prod.cantidad,
+          precio: prod.precio,
+          subtotal: prod.precio * prod.cantidad,
         });
       }
 
-      if (isNaN(usuarioId) || isNaN(productoId)) {
-        return res.status(400).json({
-          message: "usuarioId y productoId deben ser números válidos",
-        });
-      }
-  
-      const nuevoPedido = await Pedido.create(req.body); // Crear un nuevo pedido
       res.status(201).json({
-        message: "Pedido creado",
+        message: "Pedido creado correctamente",
         pedido: nuevoPedido,
       });
     } catch (error) {
