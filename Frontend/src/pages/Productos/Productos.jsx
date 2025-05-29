@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import CardProducto from "../../components/CardProducto/CardProducto";
 import DetalleProducto from "../../components/DetalleProducto/DetalleProducto";
+import CardModificarProducto from "../../components/CardModificarProducto/CardModificarProducto";
 import "./Productos.css";
 import { useFiltro } from "../../context/FiltroContext";
-
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
 const Productos = () => {
   const [productos, setProductos] = useState([]);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+  const [productoAModificar, setProductoAModificar] = useState(null);
+  const { rol, usuario } = useContext(AuthContext);
 
   const {
     categoriaSeleccionada,
@@ -61,6 +65,7 @@ const Productos = () => {
               <CardProducto
                 producto={producto}
                 onVerDetalles={() => setProductoSeleccionado(producto)}
+                onModificar={() => setProductoAModificar(producto)}
               />
             </div>
           ))}
@@ -71,6 +76,14 @@ const Productos = () => {
         <DetalleProducto
           producto={productoSeleccionado}
           onClose={() => setProductoSeleccionado(null)}
+          categoriaSeleccionada={categoriaSeleccionada}
+          marcaSeleccionada={marcaSeleccionada}
+        />
+      )}
+      {productoAModificar && usuario && rol === "admin" && (
+        <CardModificarProducto
+          producto={productoAModificar}
+          onClose={() => setProductoAModificar(null)}
           categoriaSeleccionada={categoriaSeleccionada}
           marcaSeleccionada={marcaSeleccionada}
         />

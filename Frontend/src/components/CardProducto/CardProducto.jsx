@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { CarritoContext } from "../../context/CarritoContext";
 
-function CardProducto({ producto, onVerDetalles }) {
+function CardProducto({ producto, onVerDetalles, onModificar }) {
   function normalizarPrecio(precio) {
     const num = Number(precio);
     // Si el precio es menor a 1000, probablemente está mal (con o sin decimales)
@@ -113,6 +113,7 @@ function CardProducto({ producto, onVerDetalles }) {
                 border: "1px solid #000",
                 fontWeight: "bold",
               }}
+              onClick={onModificar}
             >
               Modificar
             </Button>

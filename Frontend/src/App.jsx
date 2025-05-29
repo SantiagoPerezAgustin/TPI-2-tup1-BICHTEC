@@ -14,6 +14,7 @@ import SideBar from "./components/SideBar/SideBar.jsx";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute from "./context/ProtectedRoute.jsx";
 import Perfil from "./pages/Perfil/Perfil.jsx";
+import Panel from "./pages/Panel/Panel.jsx";
 
 function App() {
   return (
@@ -46,6 +47,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Perfil />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <Panel />
               </ProtectedRoute>
             }
           />
