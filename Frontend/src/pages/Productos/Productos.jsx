@@ -22,12 +22,18 @@ const Productos = () => {
   } = useFiltro();
 
   useEffect(() => {
-    fetch("http://localhost:3000/productos")
-      .then((response) => response.json())
-      .then((data) => {
-        setProductos(Array.isArray(data.productos) ? data.productos : []);
-      });
+    fetchProductos();
   }, []);
+
+  const fetchProductos = async () => {
+  try {
+    const response = await fetch("http://localhost:3000/productos");
+    const data = await response.json();
+    setProductos(Array.isArray(data.productos) ? data.productos : []);
+  } catch (error) {
+    console.error("Error al obtener productos:", error);
+  }
+};
 
   const productosFiltrados = productos.filter((producto) => {
     const coincideCategoria = categoriaSeleccionada
@@ -86,6 +92,7 @@ const Productos = () => {
           onClose={() => setProductoAModificar(null)}
           categoriaSeleccionada={categoriaSeleccionada}
           marcaSeleccionada={marcaSeleccionada}
+          recargarProductos={fetchProductos}
         />
       )}
     </>

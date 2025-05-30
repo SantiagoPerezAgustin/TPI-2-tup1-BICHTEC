@@ -64,7 +64,7 @@ class ProductosController {
   async actualizar(req, res) {
     try {
       const { id } = req.params;
-      const { nombre, precio, descripcion, imagenUrl } = req.body;
+      const { nombre, precio, descripcion, stock, imagenUrl } = req.body;
       if (!nombre || !precio) {
         return res.status(400).json({
           message: "Faltan datos requeridos",
