@@ -72,6 +72,7 @@ const Productos = () => {
                 producto={producto}
                 onVerDetalles={() => setProductoSeleccionado(producto)}
                 onModificar={() => setProductoAModificar(producto)}
+                recargarProductos={fetchProductos}
               />
             </div>
           ))}
