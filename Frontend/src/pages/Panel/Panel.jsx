@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import FormAgregarProducto from "../../components/AgregarProducto/FormAgregarProducto";
+import CardCategoria from "../../components/CardCategoria/CardCategoria";
+import CardModificarCategoria from "../../components/CardModificarCategoria/CardModificarCategoria";
+import { toast } from "react-toastify";
 
 const Panel = () => {
   const [marcas, setMarcas] = useState([]);
   const [categorias, setCategorias] = useState([]);
+  const [categoriaAModificar, setCategoriaAModificar] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:3000/marcas")
@@ -14,6 +18,124 @@ const Panel = () => {
       .then((res) => res.json())
       .then((data) => setCategorias(data.categorias || []));
   }, []);
+
+  const handleEliminarCategoria = (categoria) => {
+    toast.info(
+      <div>
+        ¿Deseas eliminar la categoría <b>{categoria.nombre}</b>?
+        <div style={{ marginTop: 10, display: "flex", gap: 10 }}>
+          <button
+            style={{
+              background: "#ff4d4f",
+              color: "#fff",
+              border: "none",
+              padding: "5px 16px",
+              borderRadius: 5,
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
+            onClick={async () => {
+              toast.dismiss();
+              try {
+                const res = await fetch(
+                  `http://localhost:3000/categorias/${categoria.id}`,
+                  {
+                    method: "DELETE",
+                  }
+                );
+                if (res.ok) {
+                  setCategorias((prev) =>
+                    prev.filter((c) => c.id !== categoria.id)
+                  );
+                  toast.success("Categoría eliminada");
+                } else {
+                  toast.error("No se pudo eliminar la categoría.");
+                }
+              } catch {
+                toast.error("Error de conexión al eliminar.");
+              }
+            }}
+          >
+            Sí
+          </button>
+          <button
+            style={{
+              background: "#ffe066",
+              color: "#222",
+              border: "1px solid #bfa100",
+              padding: "5px 16px",
+              borderRadius: 5,
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
+            onClick={() => toast.dismiss()}
+          >
+            No
+          </button>
+        </div>
+      </div>,
+      { autoClose: false }
+    );
+  };
+
+  // Función para modificar categoría con confirmación toast (ejemplo)
+  const handleModificarCategoria = (categoria) => {
+    toast.info(
+      <div>
+        ¿Deseas modificar la categoría <b>{categoria.nombre}</b>?
+        <div style={{ marginTop: 10, display: "flex", gap: 10 }}>
+          <button
+            style={{
+              background: "#ffe066",
+              color: "#222",
+              border: "1px solid #bfa100",
+              padding: "5px 16px",
+              borderRadius: 5,
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
+            onClick={() => {
+              toast.dismiss();
+              setCategoriaAModificar(categoria);
+            }}
+          >
+            Sí
+          </button>
+          <button
+            style={{
+              background: "#ff4d4f",
+              color: "#fff",
+              border: "none",
+              padding: "5px 16px",
+              borderRadius: 5,
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
+            onClick={() => toast.dismiss()}
+          >
+            No
+          </button>
+        </div>
+      </div>,
+      { autoClose: false }
+    );
+  };
+
+  {
+    categoriaAModificar && (
+      <CardModificarCategoria
+        categoria={categoriaAModificar}
+        onClose={() => setCategoriaAModificar(null)}
+        onCategoriaModificada={(catActualizada) => {
+          setCategorias((prev) =>
+            prev.map((cat) =>
+              cat.id === catActualizada.id ? catActualizada : cat
+            )
+          );
+        }}
+      />
+    );
+  }
 
   return (
     <div
@@ -121,6 +243,23 @@ const Panel = () => {
       >
         Todas las categorías:
       </h1>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {categorias.map((categoria) => (
+          <CardCategoria
+            key={categoria.id}
+            categoria={categoria}
+            onEliminar={() => handleEliminarCategoria(categoria)}
+            onModificar={() => setCategoriaAModificar(categoria)}
+          />
+        ))}
+      </div>
     </div>
   );
 };
