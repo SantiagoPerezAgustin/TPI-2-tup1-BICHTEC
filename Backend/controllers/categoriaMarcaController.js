@@ -96,6 +96,28 @@ class CategoriaMarcaController {
       });
     }
   }
+  
+  async eliminar(req, res) {
+  try {
+    const { id } = req.params;
+    const relacion = await CategoriaMarca.findByPk(id);
+    if (!relacion) {
+      return res.status(404).json({
+        message: "Relacion no encontrada",
+      });
+    }
+    await relacion.destroy();
+    res.json({
+      message: "Relacion eliminada",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error al eliminar la relacion",
+      error: error.message,
+    });
+  }
 }
+}
+
 
 module.exports = CategoriaMarcaController;

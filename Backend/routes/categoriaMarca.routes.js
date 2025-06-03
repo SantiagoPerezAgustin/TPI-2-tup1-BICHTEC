@@ -11,5 +11,7 @@ router.get('/categoria/:id', categoriaMarcaController.obtenerMarcasPorCategoria)
 
 router.get('/marca/:id', categoriaMarcaController.obtenerCategoriasPorMarca);
 
+router.delete('/:id', categoriaMarcaController.eliminar);
+
 
 module.exports = router;

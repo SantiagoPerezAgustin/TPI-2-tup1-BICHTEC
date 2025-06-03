@@ -14,7 +14,8 @@ const CardMarca = ({ marca, onEliminar, onModificar }) => {
         alignItems: "center",
         justifyContent: "space-between",
         minWidth: "320px",
-        maxWidth: "420px",
+        maxWidth: "800px",
+        width: "800px",
         transition: "box-shadow 0.2s",
         gap: "1.5rem"
       }}

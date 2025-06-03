@@ -6,11 +6,14 @@ import CardModificarCategoria from "../../components/CardModificarCategoria/Card
 import CardMarca from "../../components/CardMarca/CardMarca";
 import CardModificarMarca from "../../components/CardModificarMarca/CardModificarMarca";
 import FormAgregarMarca from "../../components/AgregarMarca/FormAgregarMarca";
+import CardCategoriaMarca from "../../components/CardCategoriaMarca/CardCategoriaMarca";
+import FormAgregarRelacion from "../../components/AgregarRelacion/FormAgregarRelacion";
 import { toast } from "react-toastify";
 
 const Panel = () => {
   const [marcas, setMarcas] = useState([]);
   const [categorias, setCategorias] = useState([]);
+  const [relaciones, setRelaciones] = useState([]);
   const [categoriaAModificar, setCategoriaAModificar] = useState(null);
   const [marcaAModificar, setMarcaAModificar] = useState(null);
 
@@ -22,6 +25,10 @@ const Panel = () => {
     fetch("http://localhost:3000/categorias")
       .then((res) => res.json())
       .then((data) => setCategorias(data.categorias || []));
+
+    fetch("http://localhost:3000/categoriaMarca")
+      .then((res) => res.json())
+      .then((data) => setRelaciones(data.relaciones || []));
   }, []);
 
   const handleEliminarCategoria = (categoria) => {
@@ -208,6 +215,64 @@ const Panel = () => {
               background: "#ff4d4f",
               color: "#fff",
               border: "none",
+              padding: "5px 16px",
+              borderRadius: 5,
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
+            onClick={() => toast.dismiss()}
+          >
+            No
+          </button>
+        </div>
+      </div>,
+      { autoClose: false }
+    );
+  };
+
+  // En tu Panel.jsx
+  const handleEliminarRelacion = (relacion) => {
+    toast.info(
+      <div>
+        ¿Deseas eliminar la relación <b>#{relacion.id}</b>?
+        <div style={{ marginTop: 10, display: "flex", gap: 10 }}>
+          <button
+            style={{
+              background: "#ff4d4f",
+              color: "#fff",
+              border: "none",
+              padding: "5px 16px",
+              borderRadius: 5,
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
+            onClick={async () => {
+              toast.dismiss();
+              try {
+                const res = await fetch(
+                  `http://localhost:3000/categoriaMarca/${relacion.id}`,
+                  { method: "DELETE" }
+                );
+                if (res.ok) {
+                  setRelaciones((prev) =>
+                    prev.filter((r) => r.id !== relacion.id)
+                  );
+                  toast.success("Relación eliminada");
+                } else {
+                  toast.error("No se pudo eliminar la relación.");
+                }
+              } catch {
+                toast.error("Error de conexión al eliminar.");
+              }
+            }}
+          >
+            Sí
+          </button>
+          <button
+            style={{
+              background: "#ffe066",
+              color: "#222",
+              border: "1px solid #bfa100",
               padding: "5px 16px",
               borderRadius: 5,
               cursor: "pointer",
@@ -493,6 +558,98 @@ const Panel = () => {
         <FormAgregarMarca
           onMarcaAgregada={(nuevaMarca) => {
             setMarcas((prev) => [...prev, nuevaMarca]);
+          }}
+        />
+        <br />
+        <br />
+
+        <hr
+          style={{
+            width: "80%",
+            border: "none",
+            borderTop: "2px solid rgb(30, 30, 29)",
+            margin: "2rem auto",
+          }}
+        />
+
+        <br />
+
+        <h1
+          style={{
+            fontSize: "2.3rem",
+            fontWeight: "bold",
+            color: "#bfa100",
+            marginBottom: "1.5rem",
+            letterSpacing: "2px",
+            textShadow: "0 2px 8px #ffe066",
+            alignSelf: "center",
+          }}
+        >
+          Relaciones entre Categorías y Marcas
+        </h1>
+        <h1
+          style={{
+            fontSize: "1.0rem",
+            fontWeight: "bold",
+            color: "#bfa100",
+            marginBottom: "1.5rem",
+            letterSpacing: "2px",
+            textShadow: "0 2px 8pxrgb(230, 190, 27)",
+            alignSelf: "center",
+          }}
+        >
+          Categorías y Marcas deben estar relacionadas para el correcto
+          funcionamiento de los filtros de búsqueda de productos.
+        </h1>
+        <br />
+        <h1
+          style={{
+            fontSize: "1.3rem",
+            fontWeight: "bold",
+            color: "#bfa100",
+            marginBottom: "1.5rem",
+            letterSpacing: "2px",
+            textShadow: "0 2px 8pxrgb(230, 190, 27)",
+            alignSelf: "center",
+          }}
+        >
+          Todas las relaciones categoría-marca:
+        </h1>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {relaciones.map((rel) => (
+            <CardCategoriaMarca
+              key={rel.id}
+              categoriaMarca={rel}
+              onEliminar={() => handleEliminarRelacion(rel)}
+            />
+          ))}
+        </div>
+        <br />
+        <h1
+          style={{
+            fontSize: "1.3rem",
+            fontWeight: "bold",
+            color: "#bfa100",
+            marginBottom: "1.5rem",
+            letterSpacing: "2px",
+            textShadow: "0 2px 8pxrgb(230, 190, 27)",
+            alignSelf: "center",
+          }}
+        >
+          Agregar nueva Relación:
+        </h1>
+        <FormAgregarRelacion
+          categorias={categorias}
+          marcas={marcas}
+          onRelacionAgregada={(nuevaRelacion) => {
+            setRelaciones((prev) => [...prev, nuevaRelacion]);
           }}
         />
         <br />
