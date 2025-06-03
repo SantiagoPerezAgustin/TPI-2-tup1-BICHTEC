@@ -73,6 +73,23 @@ const ValidationsForms = (datos, modo = "register") => {
     }
   }
 
+  if (modo === "categoria") {
+    if (!datos.nombre?.trim()) {
+      errores.nombre = "El nombre es obligatorio";
+    } else if (datos.nombre.length < 2) {
+      errores.nombre = "El nombre debe tener al menos 2 caracteres";
+    }
+  }
+
+  if (modo === "marca") {
+    if (!datos.nombre?.trim()) {
+      errores.nombre = "El nombre es obligatorio";
+    } else if (datos.nombre.length < 2) {
+      errores.nombre = "El nombre debe tener al menos 2 caracteres";
+    }
+  }
+
+
   return errores;
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CardCategoria = ({ categoria, onEliminar, onModificar }) => {
+const CardMarca = ({ marca, onEliminar, onModificar }) => {
   return (
     <div
       style={{
@@ -31,12 +31,12 @@ const CardCategoria = ({ categoria, onEliminar, onModificar }) => {
             color: "#bfa100",
             fontSize: "1.1rem",
             letterSpacing: "1px",
-            background: "rgba(255, 253, 231, 0.0)", // transparente
+            background: "rgba(255, 253, 231, 0.0)",
             borderRadius: "6px",
             padding: "0.15rem 0.7rem",
             border: "1px solid #ffe066"
           }}>
-            #ID {categoria.id}
+            #ID {marca.id}
           </span>
           <span style={{
             fontSize: "1.3rem",
@@ -44,13 +44,13 @@ const CardCategoria = ({ categoria, onEliminar, onModificar }) => {
             fontWeight: 700,
             letterSpacing: "0.5px"
           }}>
-            {categoria.nombre}
+            {marca.nombre}
           </span>
         </div>
       </div>
       <div style={{ display: "flex", gap: "1.2rem" }}>
         <button
-          onClick={() => onModificar(categoria)}
+          onClick={() => onModificar(marca)}
           style={{
             background: "linear-gradient(90deg, #ffe066 60%, #fffbe6 100%)",
             color: "#222",
@@ -69,7 +69,7 @@ const CardCategoria = ({ categoria, onEliminar, onModificar }) => {
           Modificar
         </button>
         <button
-          onClick={() => onEliminar(categoria)}
+          onClick={() => onEliminar(marca)}
           style={{
             background: "linear-gradient(90deg, #ff4d4f 70%, #fffbe6 100%)",
             color: "#fff",
@@ -92,4 +92,4 @@ const CardCategoria = ({ categoria, onEliminar, onModificar }) => {
   );
 };
 
-export default CardCategoria;
+export default CardMarca;

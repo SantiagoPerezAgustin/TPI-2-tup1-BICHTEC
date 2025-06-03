@@ -2,20 +2,19 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import ValidationsForms from "../Validations/ValidationsForms";
 
-const CardModificarCategoria = ({
-  categoria,
+const CardModificarMarca = ({
+  marca,
   onClose,
-  onCategoriaModificada,
+  onMarcaModificada,
 }) => {
-  const [nombre, setNombre] = useState(categoria.nombre);
+  const [nombre, setNombre] = useState(marca.nombre);
   const [loading, setLoading] = useState(false);
   const [errores, setErrores] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Usar ValidationsForms para validar el nombre
-    const erroresVal = ValidationsForms({ nombre }, "categoria");
+    const erroresVal = ValidationsForms({ nombre }, "marca");
     if (Object.keys(erroresVal).length > 0) {
       setErrores(erroresVal);
       toast.error(erroresVal.nombre || "Corrige los errores");
@@ -38,11 +37,18 @@ const CardModificarCategoria = ({
               fontWeight: "bold",
             }}
             onClick={async () => {
+              // Validar de nuevo antes de enviar
+              const erroresVal2 = ValidationsForms({ nombre }, "marca");
+              if (Object.keys(erroresVal2).length > 0) {
+                setErrores(erroresVal2);
+                toast.error(erroresVal2.nombre || "Corrige los errores");
+                return;
+              }
               toast.dismiss();
               setLoading(true);
               try {
                 const res = await fetch(
-                  `http://localhost:3000/categorias/${categoria.id}`,
+                  `http://localhost:3000/marcas/${marca.id}`,
                   {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
@@ -50,12 +56,12 @@ const CardModificarCategoria = ({
                   }
                 );
                 if (res.ok) {
-                  toast.success("Categoría modificada");
-                  onCategoriaModificada &&
-                    onCategoriaModificada({ ...categoria, nombre });
+                  toast.success("Marca modificada");
+                  onMarcaModificada &&
+                    onMarcaModificada({ ...marca, nombre });
                   onClose && onClose();
                 } else {
-                  toast.error("No se pudo modificar la categoría.");
+                  toast.error("No se pudo modificar la marca.");
                 }
               } catch {
                 toast.error("Error de conexión al modificar.");
@@ -162,4 +168,4 @@ const CardModificarCategoria = ({
   );
 };
 
-export default CardModificarCategoria;
+export default CardModificarMarca;
