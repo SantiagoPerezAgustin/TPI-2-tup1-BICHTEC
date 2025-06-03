@@ -7,26 +7,29 @@ const Perfil = () => {
   const { usuario } = useContext(AuthContext);
   const [compras, setCompras] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [pedidos, setPedidos] = useState([]);
+  const [loadingPedidos, setLoadingPedidos] = useState(true);
 
   useEffect(() => {
-    // Cambia el endpoint según tu backend
-    const fetchCompras = async () => {
+    const fetchPedidos = async () => {
       try {
-        const res = await fetch(
-          `http://localhost:3000/compras?usuarioId=${usuario?.id}`
-        );
+        const res = await fetch("http://localhost:3000/pedidos");
         if (res.ok) {
           const data = await res.json();
-          setCompras(data.compras || []);
+          // Filtra los pedidos por usuarioId en el frontend
+          const pedidosUsuario = (data.pedidos || []).filter(
+            (pedido) => pedido.usuarioId === usuario?.id
+          );
+          setPedidos(pedidosUsuario);
         }
       } catch {
-        setCompras([]);
+        setPedidos([]);
       } finally {
-        setLoading(false);
+        setLoadingPedidos(false);
       }
     };
-    if (usuario?.id) fetchCompras();
-    else setLoading(false);
+    if (usuario?.id) fetchPedidos();
+    else setLoadingPedidos(false);
   }, [usuario]);
 
   return (
@@ -103,7 +106,7 @@ const Perfil = () => {
           letterSpacing: "1px",
         }}
       >
-        Mis compras
+        Mis pedidos
       </h3>
       <div
         style={{
@@ -117,15 +120,15 @@ const Perfil = () => {
           width: "100%",
         }}
       >
-        {loading ? (
-          <span>Cargando compras...</span>
-        ) : compras.length === 0 ? (
-          <span>No tienes compras registradas.</span>
+        {loadingPedidos ? (
+          <span>Cargando pedidos...</span>
+        ) : pedidos.length === 0 ? (
+          <span>No tienes pedidos registrados.</span>
         ) : (
           <ul style={{ listStyle: "none", padding: 0 }}>
-            {compras.map((compra) => (
+            {pedidos.map((pedido) => (
               <li
-                key={compra.id}
+                key={pedido.id}
                 style={{
                   borderBottom: "1px solid #ffe066",
                   padding: "0.7rem 0",
@@ -133,13 +136,18 @@ const Perfil = () => {
                   textAlign: "left",
                 }}
               >
-                <b>Compra #{compra.id}</b> -{" "}
-                {new Date(compra.fecha).toLocaleDateString()}
+                <b>Compra #{pedido.id}</b> -{" "}
+                {pedido.fechaPedido
+                  ? new Date(pedido.fechaPedido).toLocaleDateString()
+                  : "Sin fecha"}
                 <br />
-                <span style={{ color: "#bfa100" }}>Total: ${compra.total}</span>
+                <span style={{ color: "#bfa100" }}>
+                  Estado: {pedido.estado}
+                </span>
                 <br />
-                <span style={{ fontSize: "0.95rem", color: "#555" }}>
-                  Productos: {compra.productos?.map((p) => p.nombre).join(", ")}
+                <span style={{ color: "#555" }}>
+                  Dirección de envío:{" "}
+                  {pedido.direccionEnvio || "No especificada"}
                 </span>
               </li>
             ))}
