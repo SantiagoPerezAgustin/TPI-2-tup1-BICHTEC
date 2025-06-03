@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { CarritoContext } from "../../context/CarritoContext";
 
 const DetalleProducto = ({
   producto,
@@ -13,14 +14,15 @@ const DetalleProducto = ({
 }) => {
   const { usuario } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { agregarAlCarrito } = useContext(CarritoContext);
 
-  const handleBtnComprarClick = (e) => {
+  const handleBtnComprarClick = async (e) => {
     if (!usuario) {
       e.preventDefault();
       toast.error("Debes iniciar sesión para comprar.");
       navigate("/login");
     } else {
-      // Acá podés manejar la lógica de compra si el usuario está logueado
+      await agregarAlCarrito(producto.id, 1);
       toast.success("Producto agregado al carrito!");
     }
   };

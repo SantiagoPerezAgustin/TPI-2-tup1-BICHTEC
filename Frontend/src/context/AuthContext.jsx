@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(null);
   const [rol, setRol] = useState(null);
+  const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
     const usuarioGuardado = localStorage.getItem("usuario");
@@ -13,6 +14,7 @@ export const AuthProvider = ({ children }) => {
       setUsuario(usuarioObj);
       setRol(usuarioObj.rol);
     }
+    setCargando(false);
   }, []);
 
   const login = (usuario, token) => {
@@ -30,7 +32,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ usuario, login, logout, rol }}>
+    <AuthContext.Provider value={{ usuario, login, logout, rol, cargando }}>
       {children}
     </AuthContext.Provider>
   );

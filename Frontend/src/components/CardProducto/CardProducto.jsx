@@ -4,8 +4,14 @@ import Card from "react-bootstrap/Card";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { CarritoContext } from "../../context/CarritoContext";
 
-function CardProducto({ producto, onVerDetalles, onModificar, recargarProductos }) {
+function CardProducto({
+  producto,
+  onVerDetalles,
+  onModificar,
+  recargarProductos,
+}) {
   function normalizarPrecio(precio) {
     const num = Number(precio);
     // Si el precio es menor a 1000, probablemente está mal (con o sin decimales)
@@ -18,66 +24,73 @@ function CardProducto({ producto, onVerDetalles, onModificar, recargarProductos 
   const navigate = useNavigate();
 
   const { usuario, rol } = useContext(AuthContext);
+  const { agregarAlCarrito } = useContext(CarritoContext);
 
-  const handleBtnComprarClick = (e) => {
+  const handleBtnComprarClick = async (e) => {
     if (!usuario) {
       e.preventDefault();
       toast.error("Debes iniciar sesión para comprar.");
       navigate("/login");
+    } else {
+      await agregarAlCarrito(producto.id, 1);
+      toast.success("Producto agregado al carrito!");
     }
   };
 
   const handleEliminar = () => {
-  toast.info(
-    <div>
-      ¿Estás seguro que deseas eliminar este producto?
-      <div style={{ marginTop: 10, display: "flex", gap: 10 }}>
-        <button
-          style={{
-            background: "#28a745",
-            color: "#fff",
-            border: "none",
-            padding: "5px 12px",
-            borderRadius: 5,
-            cursor: "pointer",
-          }}
-          onClick={async () => {
-            toast.dismiss();
-            try {
-              const response = await fetch(`http://localhost:3000/productos/${producto.id}`, {
-                method: "DELETE",
-              });
-              if (response.ok) {
-                toast.success("Producto eliminado correctamente");
-                if (recargarProductos) recargarProductos();
-              } else {
-                toast.error("Error al eliminar el producto");
+    toast.info(
+      <div>
+        ¿Estás seguro que deseas eliminar este producto?
+        <div style={{ marginTop: 10, display: "flex", gap: 10 }}>
+          <button
+            style={{
+              background: "#28a745",
+              color: "#fff",
+              border: "none",
+              padding: "5px 12px",
+              borderRadius: 5,
+              cursor: "pointer",
+            }}
+            onClick={async () => {
+              toast.dismiss();
+              try {
+                const response = await fetch(
+                  `http://localhost:3000/productos/${producto.id}`,
+                  {
+                    method: "DELETE",
+                  }
+                );
+                if (response.ok) {
+                  toast.success("Producto eliminado correctamente");
+                  if (recargarProductos) recargarProductos();
+                } else {
+                  toast.error("Error al eliminar el producto");
+                }
+              } catch (error) {
+                toast.error("Error de conexión al eliminar el producto");
               }
-            } catch (error) {
-              toast.error("Error de conexión al eliminar el producto");
-            }
-          }}
-        >
-          Sí
-        </button>
-        <button
-          style={{
-            background: "#dc3545",
-            color: "#fff",
-            border: "none",
-            padding: "5px 12px",
-            borderRadius: 5,
-            cursor: "pointer",
-          }}
-          onClick={() => toast.dismiss()}
-        >
-          No
-        </button>
-      </div>
-    </div>,
-    { autoClose: false }
-  );
-};
+            }}
+          >
+            Sí
+          </button>
+          <button
+            style={{
+              background: "#dc3545",
+              color: "#fff",
+              border: "none",
+              padding: "5px 12px",
+              borderRadius: 5,
+              cursor: "pointer",
+            }}
+            onClick={() => toast.dismiss()}
+          >
+            No
+          </button>
+        </div>
+      </div>,
+      { autoClose: false }
+    );
+  };
   return (
     <Card
       style={{

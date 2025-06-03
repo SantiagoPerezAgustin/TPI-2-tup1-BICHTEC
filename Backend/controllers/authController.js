@@ -160,8 +160,33 @@ const validateRegisterUser = (req) => {
   return result;
 };
 
+const actualizarPassword = async (req, res) => {
+  const { id } = req.params;
+  const { password } = req.body;
+
+  if (!password || !validatePassword(password, 7, null, false, true)) {
+    return res.status(400).json({ message: "Contraseña inválida" });
+  }
+
+  try {
+    const usuario = await Usuario.findByPk(id);
+    if (!usuario) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    usuario.password = await bcrypt.hash(password, salt);
+
+    await usuario.save();
+    res.json({ message: "Contraseña actualizada correctamente" });
+  } catch (error) {
+    res.status(500).json({ message: "Error al actualizar la contraseña", error: error.message });
+  }
+};
+
 module.exports = {
   verifyToken,
   registerUser,
   loginUser,
+  actualizarPassword
 };

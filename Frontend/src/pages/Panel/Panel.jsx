@@ -325,7 +325,7 @@ const Panel = () => {
           flexDirection: "column",
           alignItems: "center",
           textAlign: "center",
-          background: "linear-gradient(135deg, #fffbe6 0%, #ffe066 100%)",
+          background: "rgb(248, 232, 139)",
           paddingTop: "3rem",
         }}
       >
