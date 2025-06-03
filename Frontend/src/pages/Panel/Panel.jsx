@@ -8,6 +8,7 @@ import CardModificarMarca from "../../components/CardModificarMarca/CardModifica
 import FormAgregarMarca from "../../components/AgregarMarca/FormAgregarMarca";
 import CardCategoriaMarca from "../../components/CardCategoriaMarca/CardCategoriaMarca";
 import FormAgregarRelacion from "../../components/AgregarRelacion/FormAgregarRelacion";
+import CardUsuario from "../../components/CardUsuario/CardUsuario";
 import { toast } from "react-toastify";
 
 const Panel = () => {
@@ -16,6 +17,7 @@ const Panel = () => {
   const [relaciones, setRelaciones] = useState([]);
   const [categoriaAModificar, setCategoriaAModificar] = useState(null);
   const [marcaAModificar, setMarcaAModificar] = useState(null);
+  const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/marcas")
@@ -29,6 +31,10 @@ const Panel = () => {
     fetch("http://localhost:3000/categoriaMarca")
       .then((res) => res.json())
       .then((data) => setRelaciones(data.relaciones || []));
+
+    fetch("http://localhost:3000/usuarios")
+      .then((res) => res.json())
+      .then((data) => setUsuarios(data.usuarios || []));
   }, []);
 
   const handleEliminarCategoria = (categoria) => {
@@ -260,6 +266,67 @@ const Panel = () => {
                   toast.success("Relación eliminada");
                 } else {
                   toast.error("No se pudo eliminar la relación.");
+                }
+              } catch {
+                toast.error("Error de conexión al eliminar.");
+              }
+            }}
+          >
+            Sí
+          </button>
+          <button
+            style={{
+              background: "#ffe066",
+              color: "#222",
+              border: "1px solid #bfa100",
+              padding: "5px 16px",
+              borderRadius: 5,
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
+            onClick={() => toast.dismiss()}
+          >
+            No
+          </button>
+        </div>
+      </div>,
+      { autoClose: false }
+    );
+  };
+
+  const handleEliminarUsuario = (usuario) => {
+    toast.info(
+      <div>
+        ¿Deseas eliminar el usuario{" "}
+        <b>
+          {usuario.nombre} {usuario.apellido}
+        </b>
+        ?
+        <div style={{ marginTop: 10, display: "flex", gap: 10 }}>
+          <button
+            style={{
+              background: "#ff4d4f",
+              color: "#fff",
+              border: "none",
+              padding: "5px 16px",
+              borderRadius: 5,
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
+            onClick={async () => {
+              toast.dismiss();
+              try {
+                const res = await fetch(
+                  `http://localhost:3000/usuarios/${usuario.id}`,
+                  { method: "DELETE" }
+                );
+                if (res.ok) {
+                  setUsuarios((prev) =>
+                    prev.filter((u) => u.id !== usuario.id)
+                  );
+                  toast.success("Usuario eliminado");
+                } else {
+                  toast.error("No se pudo eliminar el usuario.");
                 }
               } catch {
                 toast.error("Error de conexión al eliminar.");
@@ -664,6 +731,59 @@ const Panel = () => {
           }}
         />
 
+        <br />
+        <h1
+          style={{
+            fontSize: "2.3rem",
+            fontWeight: "bold",
+            color: "#bfa100",
+            marginBottom: "1.5rem",
+            letterSpacing: "2px",
+            textShadow: "0 2px 8px #ffe066",
+            alignSelf: "center",
+          }}
+        >
+          Usuarios
+        </h1>
+        <h1
+          style={{
+            fontSize: "1.3rem",
+            fontWeight: "bold",
+            color: "#bfa100",
+            marginBottom: "1.5rem",
+            letterSpacing: "2px",
+            textShadow: "0 2px 8pxrgb(230, 190, 27)",
+            alignSelf: "center",
+          }}
+        >
+          Todos los usuario:
+        </h1>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {usuarios.map((usuario) => (
+            <CardUsuario
+              key={usuario.id}
+              usuario={usuario}
+              onEliminar={handleEliminarUsuario}
+            />
+          ))}
+        </div>
+        <br />
+        <br />
+        <hr
+          style={{
+            width: "80%",
+            border: "none",
+            borderTop: "2px solid rgb(30, 30, 29)",
+            margin: "2rem auto",
+          }}
+        />
         <br />
       </div>
     </>
