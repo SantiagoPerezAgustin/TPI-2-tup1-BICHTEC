@@ -14,7 +14,7 @@ const CardModificarCategoria = ({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Usar ValidationsForms para validar el nombre
+    // Usar ValidationsForms para validar el nombree
     const erroresVal = ValidationsForms({ nombre }, "categoria");
     if (Object.keys(erroresVal).length > 0) {
       setErrores(erroresVal);

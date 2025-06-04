@@ -40,7 +40,7 @@
   height: 2px;
   bottom: -2px;
   left: 0;
-  background-color: gold; /* efecto dorado */
+  background-color: gold; 
   transition: width 0.3s ease-in-out;
 }
 
@@ -50,7 +50,7 @@
 
 .footer-links a:hover {
   color: #ffffff;
-  text-decoration: none; /* eliminamos subrayado clásico */
+  text-decoration: none; 
 }
 
 .footer-copy {

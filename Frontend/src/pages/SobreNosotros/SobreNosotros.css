@@ -2,25 +2,25 @@
   display: flex;
   align-items: flex-start;
   background-color: #1a1a1a;
-  flex-direction: row; /* Horizontal por defecto */
+  flex-direction: row; 
 }
 
 .imagen-logo {
   max-width: 92vh;
   height: auto;
-  order: 2; /* por defecto aparece después */
+  order: 2; 
 }
 
-/* --- Responsive: cuando el ancho de pantalla sea menor a 768px --- */
+
 @media (max-width: 768px) {
   .sobre-nosotros-page {
-    flex-direction: column; /* Cambia a vertical */
+    flex-direction: column; 
     align-items: center;
   }
 
   .imagen-logo {
-    order: 0; /* aparece primero */
-    max-width: 100%; /* se ajusta al ancho del celular */
+    order: 0; 
+    max-width: 100%; 
     margin-bottom: 16px;
   }
 

@@ -63,7 +63,6 @@ const CardUsuario = ({ usuario, onEliminar, onModificar }) => {
           </div>
         </div>
         <div className="card-usuario-btns" style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-          {/* Solo mostrar el botón eliminar si NO es el usuario logueado */}
           {onEliminar && !esYo && (
             <button
               onClick={() => onEliminar(usuario)}

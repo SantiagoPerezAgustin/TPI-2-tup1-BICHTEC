@@ -173,7 +173,6 @@ function ColorSchemesExample() {
                   style={{ color: "yellow" }}
                 >
                   <i className="bi bi-cart-fill fs-4"></i>
-                  {/* Badge opcional */}
                   <span
                     className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     style={{ fontSize: "0.6rem" }}

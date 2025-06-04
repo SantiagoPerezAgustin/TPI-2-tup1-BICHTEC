@@ -242,9 +242,9 @@ const FormAgregarProducto = ({
             border: "1px solid #000",
             fontWeight: "bold",
             height: "fit-content",
-            fontSize: "1rem", // Más pequeño
-            padding: "0.5rem 2rem", // Menos padding
-            borderRadius: "8px", // Un poco más pequeño
+            fontSize: "1rem", 
+            padding: "0.5rem 2rem", 
+            borderRadius: "8px", 
           }}
         >
           Guardar
@@ -260,9 +260,9 @@ const FormAgregarProducto = ({
             border: "1px solid #000",
             fontWeight: "bold",
             height: "fit-content",
-            fontSize: "1rem", // Más pequeño
-            padding: "0.5rem 2rem", // Menos padding
-            borderRadius: "8px", // Un poco más pequeño
+            fontSize: "1rem", 
+            padding: "0.5rem 2rem", 
+            borderRadius: "8px", 
           }}
         >
           Cancelar

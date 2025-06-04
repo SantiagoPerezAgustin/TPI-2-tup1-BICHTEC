@@ -14,7 +14,6 @@ function CardProducto({
 }) {
   function normalizarPrecio(precio) {
     const num = Number(precio);
-    // Si el precio es menor a 1000, probablemente está mal (con o sin decimales)
     if (num < 1000) {
       return num * 1000;
     }

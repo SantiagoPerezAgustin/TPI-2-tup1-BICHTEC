@@ -19,7 +19,7 @@
 }
 
 .custom-navbar-bg {
-  background-color: #1a1a1a; /*prueba*/
+  background-color: #1a1a1a; 
 }
 
 .navbar {
@@ -42,7 +42,7 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23FFD700' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22' /%3E%3C/svg%3E");
 }
 
-/* Opcional: borde dorado del botón */
+
 .navbar-toggler {
   border-color: #FFD700;
 }

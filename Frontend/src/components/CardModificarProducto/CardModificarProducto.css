@@ -103,7 +103,7 @@
   font-size: 1.2rem;
 }
 
-/* Responsive: ajustes en móviles */
+
 @media (max-width: 600px) {
   .detalle-contenido {
     padding: 1rem;

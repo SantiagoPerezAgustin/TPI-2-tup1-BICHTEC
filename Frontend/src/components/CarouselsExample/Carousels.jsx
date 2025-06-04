@@ -39,10 +39,10 @@ function Carousels() {
                 backgroundPosition: "center",
                 height: "100vh",
                 width: "100vw",
-                position: "relative", // Necesario para la capa superpuesta
+                position: "relative", 
               }}
             >
-              {/* Capa superpuesta para opacidad */}
+              
               <div
                 style={{
                   position: "absolute",
@@ -50,16 +50,16 @@ function Carousels() {
                   left: 0,
                   width: "100%",
                   height: "100%",
-                  backgroundColor: "rgba(0, 0, 0, 0.5)", // Fondo semitransparente
-                  zIndex: 1, // Coloca esta capa detrás del texto
+                  backgroundColor: "rgba(0, 0, 0, 0.5)", 
+                  zIndex: 1, 
                 }}
               ></div>
 
-              {/* Contenedor del texto */}
+              
               <div
                 style={{
-                  position: "relative", // Asegura que el texto esté encima de la capa
-                  zIndex: 2, // Coloca el texto encima de la capa superpuesta
+                  position: "relative",
+                  zIndex: 2, 
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
@@ -68,7 +68,7 @@ function Carousels() {
                   color: "white",
                   textAlign: "center",
                   padding: "20px",
-                  textShadow: "2px 2px 5px rgba(0, 0, 0, 0.8)", // Sombra para resaltar el texto
+                  textShadow: "2px 2px 5px rgba(0, 0, 0, 0.8)",
                 }}
               >
                 <h3 style={{ fontSize: "2.5rem", fontWeight: "bold" }}>

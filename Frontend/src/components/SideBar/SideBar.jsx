@@ -60,7 +60,7 @@ const SideBar = ({ children }) => {
     (marca) => (marca.id || marca._id) === marcaSeleccionada
   );
 
-  // SidebarContent solo se renderiza una vez y se muestra en el lugar correcto
+  
   const SidebarContent = (
     <ul className="nav flex-column p-3">
       <li className="mb-3">
@@ -201,7 +201,7 @@ const SideBar = ({ children }) => {
         setPrecioMax,
       }}
     >
-      {/* Botón para móviles */}
+      
       <div className="d-md-none p-2 text-end">
         <button
           className="btn btn-outline-light"
@@ -214,7 +214,7 @@ const SideBar = ({ children }) => {
         </button>
       </div>
 
-      {/* Sidebar fijo para escritorio */}
+      
       {windowWidth >= 768 && (
         <div
           className="d-none d-md-block"
@@ -235,7 +235,7 @@ const SideBar = ({ children }) => {
         </div>
       )}
 
-      {/* Sidebar offcanvas para móviles */}
+      
       <div
         className="offcanvas offcanvas-start d-md-none"
         tabIndex="-1"
@@ -255,7 +255,7 @@ const SideBar = ({ children }) => {
         </div>
       </div>
 
-      {/* Contenido principal ajustable */}
+      
       <div
         className="main-with-sidebar"
         style={{

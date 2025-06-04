@@ -16,7 +16,7 @@ const Perfil = () => {
         const res = await fetch("http://localhost:3000/pedidos");
         if (res.ok) {
           const data = await res.json();
-          // Filtra los pedidos por usuarioId en el frontend
+          // Filtra los pedidos por usuarioId 
           const pedidosUsuario = (data.pedidos || []).filter(
             (pedido) => pedido.usuarioId === usuario?.id
           );

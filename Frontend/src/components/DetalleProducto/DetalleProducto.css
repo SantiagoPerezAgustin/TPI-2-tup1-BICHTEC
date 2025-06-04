@@ -24,7 +24,7 @@
   color: #000;
   box-shadow: 0 0 8px #ffd700;
   overflow-y: auto;
-  padding-right: 1rem; /* espacio para "moverlo" */
+  padding-right: 1rem; 
 }
 
 .detalle-contenido::-webkit-scrollbar {
@@ -114,7 +114,7 @@
   font-size: 1.2rem;
 }
 
-/* Responsive: ajustes en móviles */
+
 @media (max-width: 600px) {
   .detalle-contenido {
     padding: 1rem;

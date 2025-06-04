@@ -96,7 +96,6 @@ const Panel = () => {
     );
   };
 
-  // Función para modificar categoría con confirmación toast (ejemplo)
   const handleModificarCategoria = (categoria) => {
     toast.info(
       <div>

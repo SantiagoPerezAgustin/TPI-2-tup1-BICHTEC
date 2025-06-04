@@ -27,7 +27,7 @@ const FormPageRegister = () => {
         repeatPasswordRef.current.focus();
       }
 
-      //alert("✅ Registro exitoso!");
+      //alert("Registro exitoso!");
       //navigate("/");
 
       setErrores(errores);

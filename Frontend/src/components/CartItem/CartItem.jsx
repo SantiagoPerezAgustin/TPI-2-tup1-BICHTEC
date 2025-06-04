@@ -21,7 +21,6 @@ const CartItem = ({ item, onEliminar, onModificarCantidad }) => {
           </h5>
 
           <p className="card-text mb-1">Cantidad: {item.cantidad}</p>
-          {/* Controles de cantidad */}
           <div className="d-flex align-items-center mb-2">
             <button
               className="btn btn-sm btn-outline-light me-2"
